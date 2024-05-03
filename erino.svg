@@ -1,0 +1,85 @@
+<svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="853px" height="230px">
+    <defs>
+        <radialGradient id="PSgrad_0">
+            <stop offset="0%" stop-color="rgb(255,255,255)" stop-opacity="1"/>
+            <stop offset="11%" stop-color="rgb(245,136,136)" stop-opacity="1"/>
+            <stop offset="33%" stop-color="rgb(235,17,17)" stop-opacity="1"/>
+            <stop offset="41%" stop-color="rgb(142,16,16)" stop-opacity="1"/>
+            <stop offset="100%" stop-color="rgb(49,14,14)" stop-opacity="1"/>
+        </radialGradient>
+
+    </defs>
+    <path fill-rule="evenodd" stroke="rgb(16, 70, 38)" stroke-width="15px" stroke-dasharray="30, 39"
+          stroke-linecap="round" stroke-linejoin="bevel" fill="none"
+          d="M421.499,22.492 C641.849,22.492 820.477,61.665 820.477,109.987 C820.477,158.310 641.849,197.483 421.499,197.483 C201.150,197.483 22.521,158.310 22.521,109.987 C22.521,61.665 201.150,22.492 421.499,22.492 Z"/>
+    <path fill-rule="evenodd" stroke="rgb(16, 70, 38)" stroke-width="10px" stroke-linecap="butt" stroke-linejoin="miter"
+          fill="none"
+          d="M12.352,108.539 L12.352,107.460 L829.647,107.460 L829.647,108.539 L12.352,108.539 Z"/>
+    <path fill-rule="evenodd" stroke="rgb(70, 16, 16)" stroke-width="20px" stroke-linecap="round"
+          stroke-linejoin="bevel" fill="none"
+          d="M421.496,21.59 C468.454,21.59 506.520,60.433 506.520,109.3 C506.520,157.573 468.454,196.946 421.496,196.946 C374.538,196.946 336.472,157.573 336.472,109.3 C336.472,60.433 374.538,21.59 421.496,21.59 Z"/>
+    <path fill-rule="evenodd" fill="rgb(252, 17, 17)"
+          d="M421.499,73.499 C440.277,73.499 455.499,88.722 455.499,107.499 C455.499,126.277 440.277,141.499 421.499,141.499 C402.722,141.499 387.499,126.277 387.499,107.499 C387.499,88.722 402.722,73.499 421.499,73.499 Z"/>
+    <text kerning="auto" font-family="Times New Roman, Times, serif" fill="rgb(0, 0, 0)"
+          transform="matrix( 1.00569450771209, 0, 0, 2.88726119716745,294.18598520602, 85.2822925071925)"
+          font-size="36px">
+        <tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" fill="#FCBE11">ER</tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" font-style="italic" fill="#FCBE11">
+                I
+            </tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" fill="#FCBE11">NO&#32;</tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" font-style="italic" fill="#FCBE11">
+                I
+            </tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" fill="#FCBE11">S</tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" font-style="italic" fill="#FCBE11">
+                I
+            </tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" fill="#FCBE11">DOR</tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" font-style="italic" fill="#FCBE11">
+                I
+            </tspan>
+        </tspan>
+        <tspan x="0" dy="1.2em">
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" fill="#FCBE11">&#32;&#32;&#32;&#32;&#32;&#32;ONL</tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" font-style="italic" fill="#FCBE11">
+                I
+            </tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" fill="#FCBE11">NE</tspan>
+        </tspan>
+    </text>
+    <text kerning="auto" font-family="Myriad Pro" stroke-width="1.75px" stroke="rgb(16, 70, 38)" fill-opacity="0"
+          stroke-opacity="0.86"
+          transform="matrix( 1.00569450771209, 0, 0, 2.88726119716745,294.18598520602, 85.2822925071925)"
+          font-size="36px">
+        <tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" fill="#FCBE11">ER</tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" font-style="italic" fill="#FCBE11">
+                I
+            </tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" fill="#FCBE11">NO&#32;</tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" font-style="italic" fill="#FCBE11">
+                I
+            </tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" fill="#FCBE11">S</tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" font-style="italic" fill="#FCBE11">
+                I
+            </tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" fill="#FCBE11">DOR</tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" font-style="italic" fill="#FCBE11">
+                I
+            </tspan>
+        </tspan>
+        <tspan x="1" dy="1.2em">
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" fill="#FCBE11">&#32;&#32;&#32;&#32;&#32;&#32;ONL</tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" font-style="italic" fill="#FCBE11">
+                I
+            </tspan>
+            <tspan font-size="36px" font-family="Times New Roman" font-weight="bold" fill="#FCBE11">NE</tspan>
+        </tspan>
+    </text>
+</svg>
