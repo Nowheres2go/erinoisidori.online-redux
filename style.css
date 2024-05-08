@@ -162,11 +162,13 @@ main {
     width: 100%; /* bruh */
     height: 100%; /* bruh */
 }
+
 #navLinks [class^='div'] {
     width: 100%;
     height: 100%;
     display: flex;
 }
+
 /*.parent {*/
 
 /*}*/
@@ -295,22 +297,50 @@ marquee {
     transform: scaleY(2.5);
 }
 
-.postPage {
-    display: flex;
-    flex-direction: column;
+.post {
     border: 5px solid #104626;
-    /*flex: 0 0 33.333333%;*/
     background: antiquewhite;
-    /*flex-basis: calc(33% - 73px);*/
-    min-height: 90ch;
-    /*transition: transform 0.5s ease-in-out;*/
-    align-items: center;
+    display: grid;
+    grid-template-rows: min-content min-content minmax(0, 64vh);
     width: 100%;
-
+    height: 100%;
 }
 
-.postPage > * {
-    width: 100%
+.post .art-container {
+    object-fit: cover;
+    padding-block: 0.5rem;
+    padding-inline: 2rem;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.post .art-container img.art {
+    border: 3px solid #104626;
+    object-fit: contain;
+    background-color: #0e0e0e;
+}
+
+.post .title, .post .subtitle {
+    font-family: "Times New Roman";
+    font-weight: bold;
+    font-style: italic;
+    color: #FCBE11;
+    text-align: center;
+    -webkit-text-stroke-color: #104626;
+    width: 100%;
+    padding-block: 0.2rem;
+    border-bottom: #104626 solid 2.5px;
+}
+
+.post .title {
+    -webkit-text-stroke-width: 2px;
+    font-size: 3.25rem;
+}
+
+.post .subtitle {
+    -webkit-text-stroke-width: 0.75px;
+    font-size: 1.75rem;
 }
 
 .contactPage {
@@ -344,6 +374,7 @@ marquee {
     width: 100%;
 }
 
+
 .postPagePara {
     font-family: "Times New Roman";
     font-weight: bold;
@@ -357,20 +388,6 @@ marquee {
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #104626;
     width: 100%;
-}
-
-.postPageImg {
-    display: flex;
-    /*object-fit: contain;*/
-    flex-direction: column;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: #104626 solid 5px;
-    height: 100%;
-    width: 100%;
-    max-height: 100svh;
-    max-width: 90rem;
-    margin-inline: 3rem;
 }
 
 
