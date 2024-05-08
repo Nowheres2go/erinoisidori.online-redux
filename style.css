@@ -155,23 +155,48 @@ main {
     border: 20px solid #104626;
     border-top: 0px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr min-content 1fr;
     grid-template-rows: repeat(4, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     width: 100%; /* bruh */
     height: 100%; /* bruh */
 }
-#navLinks [class^='div'] {
+
+#navLinks div {
     width: 100%;
     height: 100%;
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
-/*.parent {*/
 
-/*}*/
+#navLinks * {
+    font-size: 2.5rem;
+}
 
-/* you should put ABOUT, CV, WORK text in <a> tags (to make clickable), then use flex on the div1-9 containers to justify/align center them properly */
+/**
+todo: ERINO, you must style this with cool effects! it is applied to the '.postTitle' of ONLY
+todo: the current link on the page in the nav
+ */
+#navLinks .activeLink {
+    /* todo delete */
+    position: relative;
+}
+
+#navLinks .activeLink::after {
+    /* todo delete */
+    position: absolute;
+    top: -2rem;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "ERINO U MUST FIX LMAOOO";
+    font-family: "Comic Sans MS";
+    color: black;
+    font-size: 12px;
+
+}
 
 .div1 {
     grid-area: 1 / 1 / 2 / 2;
@@ -211,8 +236,6 @@ main {
 
 .div10 {
     grid-area: 4 / 1 / 5 / 4;
-    align-items: flex-start;
-    justify-content: center;
 }
 
 .postCard {
