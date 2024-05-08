@@ -169,21 +169,33 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    --border-spacing: 2.5rem;
-}
-
-#navLinks .div3, #navLinks .div9 {
-    padding-right: var(--border-spacing);
-    justify-content: flex-end;
-}
-
-#navLinks .div1, #navLinks .div7 {
-    padding-left: var(--border-spacing);
-    justify-content: flex-start;
 }
 
 #navLinks * {
     font-size: 2.5rem;
+}
+
+/**
+todo: ERINO, you must style this with cool effects! it is applied to the '.postTitle' of ONLY
+todo: the current link on the page in the nav
+ */
+#navLinks .activeLink {
+    /* todo delete */
+    position: relative;
+}
+
+#navLinks .activeLink::after {
+    /* todo delete */
+    position: absolute;
+    top: -2rem;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "ERINO U MUST FIX LMAOOO";
+    font-family: "Comic Sans MS";
+    color: black;
+    font-size: 12px;
+
 }
 
 .div1 {
