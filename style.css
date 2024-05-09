@@ -208,8 +208,8 @@ marquee {
     transition: text-shadow 0.2s ease-in;
 }
 
-#navLinks div:hover a {
-    -webkit-text-stroke-color: #104626;
+#navLinks div:hover a, .navArrow:hover {
+    /*-webkit-text-stroke-color:#104626;*/
     text-shadow: #0000EE 3px 3px 1px;
 }
 
@@ -352,6 +352,20 @@ marquee {
     width: 100%;
 
 }
+
+.postNav{
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 3rem;
+
+}
+
+.navArrow{
+    width: unset !important;
+    text-decoration: none;
+    font-style: normal !important;
+}
+
 
 .postPage > * {
     width: 100%;
