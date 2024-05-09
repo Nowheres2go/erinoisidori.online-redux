@@ -69,8 +69,8 @@ main {
       '. .';
 }
 
-/*.css-selector {*/
-/*    background: linear-gradient(0deg, #a8a8a8, #bbbbbb, #d9d9d9, #e8e8e8, #fde5a2, #fbe094);*/
+/*main {*/
+/*    background: linear-gradient(0deg, #a8a8a8, #bbbbbb, #d9d9d9, #e8e8e8, #fde5a2);*/
 /*    background-size: 1200% 1200%;*/
 
 /*    -webkit-animation: AnimationName 20s ease infinite;*/
@@ -94,12 +94,22 @@ main {
 /*    100%{background-position:50% 0%}*/
 /*}*/
 
+
+marquee {
+    font-family: "Times New Roman";
+    font-weight: bold;
+    font-style: italic;
+    color: #FCBE11;
+    font-size: 3.125rem;
+}
+
 #tickertape1 {
     grid-column: 1;
     grid-row: 1;
     border: 10px solid #104626;
     border-left: 0px;
     border-right: 0px;
+
 }
 
 #tickertape2 {
@@ -114,6 +124,19 @@ main {
     grid-column: 2;
     grid-row: 1 / -1;
     border: 10px solid #104626;
+}
+
+#marqueetop{
+    transform: translateY(6px) scaleY(3);
+
+}
+
+#marqueebottom{
+    transform: translateY(6px) scaleY(3);
+}
+
+#marqueeright{
+    transform: scaleX(3) scaleY(2) translateX(25px);
 }
 
 #main-wrapper {
@@ -151,6 +174,11 @@ main {
     border: 20px solid #104626;
 }
 
+/*#erinoLogo {*/
+/*    display: flex;*/
+/*    transform: scaleX(1.725);*/
+/*}*/
+
 #navLinks {
     border: 20px solid #104626;
     border-top: 0px;
@@ -182,19 +210,23 @@ todo: the current link on the page in the nav
 #navLinks .activeLink {
     /* todo delete */
     position: relative;
+    /*color: #d20e0e;*/
+    /*-webkit-text-stroke-width:2.5px;*/
+    -webkit-text-stroke-color:#104626;
+    text-shadow: #0000EE 3px 3px 1px;
 }
 
 #navLinks .activeLink::after {
     /* todo delete */
-    position: absolute;
-    top: -2rem;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    content: "ERINO U MUST FIX LMAOOO";
-    font-family: "Comic Sans MS";
-    color: black;
-    font-size: 12px;
+    /*position: absolute;*/
+    /*top: -2rem;*/
+    /*left: 0;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*!*content: "ERINO U MUST FIX LMAOOO";*!*/
+    /*!*font-family: "Comic Sans MS";*!*/
+    /*color: black;*/
+    /*font-size: 12px;*/
 
 }
 
@@ -309,14 +341,7 @@ todo: the current link on the page in the nav
     text-decoration: none;
 }
 
-marquee {
-    font-family: "Times New Roman";
-    font-weight: bold;
-    font-style: italic;
-    color: #FCBE11;
-    font-size: 3.125rem;
-    transform: scaleY(2.5);
-}
+
 
 .postPage {
     display: flex;
