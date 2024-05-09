@@ -205,15 +205,21 @@ marquee {
     font-size: 2.5rem;
 }
 
-/**
-todo: ERINO, you must style this with cool effects! it is applied to the '.postTitle' of ONLY
-todo: the current link on the page in the nav
- */
+
 #navLinks .activeLink {
-    /* todo delete */
     position: relative;
     /*color: #d20e0e;*/
     /*-webkit-text-stroke-width:2.5px;*/
+    -webkit-text-stroke-color:#104626;
+    text-shadow: #0000EE 3px 3px 1px;
+}
+
+/** todo: fix work hover bounding box **/
+#navLinks div a {
+    transition: text-shadow 0.2s ease-in;
+}
+
+#navLinks div:hover a {
     -webkit-text-stroke-color:#104626;
     text-shadow: #0000EE 3px 3px 1px;
 }
