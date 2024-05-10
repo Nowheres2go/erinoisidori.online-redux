@@ -23,6 +23,7 @@
     grid-column: 1;
     grid-row: 3;
 
+    --duration: 30s; /** TODO fine-tune **/
     --initial: 100%; /** TODO fine-tune **/
     --end: -125%; /** TODO fine-tune **/
 }
@@ -31,6 +32,7 @@
     grid-column: 2;
     grid-row: 1 / -1;
 
+    --duration: 30s; /** TODO fine-tune **/
     --initial: -100%; /** TODO fine-tune **/
     --end: 100%; /** TODO fine-tune **/
 }
