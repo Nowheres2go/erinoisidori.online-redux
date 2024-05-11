@@ -1,0 +1,43 @@
+<svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="726px" height="933px">
+    <defs>
+        <radialGradient id="PSgrad_0">
+            <stop offset="0%" stop-color="rgb(255,255,255)" stop-opacity="1" />
+            <stop offset="11%" stop-color="rgb(245,136,136)" stop-opacity="1" />
+            <stop offset="33%" stop-color="rgb(235,17,17)" stop-opacity="1" />
+            <stop offset="41%" stop-color="rgb(142,16,16)" stop-opacity="1" />
+            <stop offset="100%" stop-color="rgb(49,14,14)" stop-opacity="1" />
+        </radialGradient>
+
+    </defs>
+    <path fill-rule="evenodd"  stroke="rgb(16, 70, 38)" stroke-width="20px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+          d="M265.443,811.793 L171.203,667.338 L172.158,666.714 L266.399,811.170 L265.443,811.793 Z"/>
+    <path fill-rule="evenodd"  stroke="rgb(16, 70, 38)" stroke-width="20px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+          d="M435.966,809.966 L434.971,809.299 L535.813,658.882 L536.808,659.549 L435.966,809.966 Z"/>
+    <path fill-rule="evenodd"  stroke="rgb(16, 70, 38)" stroke-width="20px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+          d="M271.686,399.363 L272.469,400.13 L174.220,518.274 L173.438,517.625 L271.686,399.363 Z"/>
+    <path fill-rule="evenodd"  stroke="rgb(16, 70, 38)" stroke-width="20px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+          d="M288.808,270.557 L287.912,271.142 L199.552,135.701 L200.448,135.116 L288.808,270.557 Z"/>
+    <path fill-rule="evenodd"  stroke="rgb(16, 70, 38)" stroke-width="20px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+          d="M420.904,271.332 L420.6,270.719 L512.612,134.939 L513.511,135.552 L420.904,271.332 Z"/>
+    <path fill-rule="evenodd"  stroke="rgb(16, 70, 38)" stroke-width="20px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+          d="M257.46,590.561 L257.60,589.358 L438.956,591.439 L438.942,592.642 L257.46,590.561 Z"/>
+    <path fill-rule="evenodd"  stroke="rgb(16, 70, 38)" stroke-width="20px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+          d="M527.826,518.595 L526.894,519.149 L443.234,378.319 L444.166,377.765 L527.826,518.595 Z"/>
+    <path fill-rule="evenodd"  stroke="rgb(16, 70, 38)" stroke-width="20px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+          d="M475.664,73.574 L475.660,75.164 L235.197,74.561 L235.201,72.971 L475.664,73.574 Z"/>
+    <path fill-rule="evenodd"  stroke="rgb(16, 70, 38)" stroke-width="10px" stroke-linecap="round" stroke-linejoin="bevel" fill="none"
+          d="M349.507,265.868 C404.417,265.868 448.930,298.387 448.930,338.500 C448.930,378.614 404.417,411.132 349.507,411.132 C294.598,411.132 250.84,378.614 250.84,338.500 C250.84,298.387 294.598,265.868 349.507,265.868 Z"/>
+    <path fill-rule="evenodd"  stroke="rgb(16, 70, 38)" stroke-width="10px" stroke-linecap="round" stroke-linejoin="bevel" fill="none"
+          d="M350.395,782.444 C399.613,782.444 439.512,811.592 439.512,847.547 C439.512,883.502 399.613,912.650 350.395,912.650 C301.178,912.650 261.279,883.502 261.279,847.547 C261.279,811.592 301.178,782.444 350.395,782.444 Z"/>
+    <path fill-rule="evenodd"  stroke="rgb(16, 70, 38)" stroke-width="10px" stroke-linecap="round" stroke-linejoin="bevel" fill="none"
+          d="M127.6,520.687 C191.627,520.687 244.13,552.167 244.13,591.0 C244.13,629.833 191.627,661.314 127.6,661.314 C62.385,661.314 9.999,629.833 9.999,591.0 C9.999,552.167 62.385,520.687 127.6,520.687 Z"/>
+    <path fill-rule="evenodd"  stroke="rgb(16, 70, 38)" stroke-width="10px" stroke-linecap="round" stroke-linejoin="bevel" fill="none"
+          d="M575.5,525.305 C647.350,525.305 705.998,554.46 705.998,589.500 C705.998,624.954 647.350,653.695 575.5,653.695 C502.660,653.695 444.12,624.954 444.12,589.500 C444.12,554.46 502.660,525.305 575.5,525.305 Z"/>
+    <path fill-rule="evenodd"  stroke="rgb(16, 70, 38)" stroke-width="10px" stroke-linecap="round" stroke-linejoin="bevel" fill="none"
+          d="M127.492,15.471 C182.442,15.471 226.989,44.585 226.989,80.500 C226.989,116.415 182.442,145.530 127.492,145.530 C72.541,145.530 27.994,116.415 27.994,80.500 C27.994,44.585 72.541,15.471 127.492,15.471 Z"/>
+    <path fill-rule="evenodd"  stroke="rgb(16, 70, 38)" stroke-width="10px" stroke-linecap="round" stroke-linejoin="bevel" fill="none"
+          d="M574.508,10.678 C624.10,10.678 664.140,39.994 664.140,76.157 C664.140,112.320 624.10,141.637 574.508,141.637 C525.6,141.637 484.876,112.320 484.876,76.157 C484.876,39.994 525.6,10.678 574.508,10.678 Z"/>
+</svg>
