@@ -41,12 +41,13 @@
 /** Change scaleX/scaleY to change the 'kerning' / 'stretch' of the text **/
 .tape:not(.vertical) .tape-inner p {
     font-size: calc(100px);
-    transform: scaleY(1.3); /** TODO fine-tune **/
+    transform: scaleY(1.475) scaleX(0.5); /** TODO fine-tune **/
+
 }
 
 .tape .tape-inner p {
     font-size: calc(100px);
-    transform: scaleX(1.3); /** TODO fine-tune **/
+    transform: scaleY(0.7) scaleX(1.48); /** TODO fine-tune **/
 }
 
 /** Tickertape boilerplate code **/
@@ -74,11 +75,16 @@
 .tape-wrapper {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow-y: visible;
+    overflow-x: clip;
     position: absolute;
     top: 0;
     left: 0;
 }
+/*.tape:not(.vertical) .tape-wrapper {*/
+/*    overflow-x: visible;*/
+/*    overflow-y: clip;*/
+/*}*/
 
 .tape::after {
     box-sizing: border-box;
