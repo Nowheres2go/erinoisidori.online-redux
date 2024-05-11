@@ -6,7 +6,6 @@ html {
 img {
     width: 100%;
     height: 100%;
-
 }
 
 .indeximg {
@@ -70,78 +69,6 @@ main {
       '. .'
       '. .'
       '. .';
-}
-
-/*main {*/
-/*    background: linear-gradient(0deg, #a8a8a8, #bbbbbb, #d9d9d9, #e8e8e8, #fde5a2);*/
-/*    background-size: 1200% 1200%;*/
-
-/*    -webkit-animation: AnimationName 20s ease infinite;*/
-/*    -moz-animation: AnimationName 20s ease infinite;*/
-/*    animation: AnimationName 20s ease infinite;*/
-/*}*/
-
-/*@-webkit-keyframes AnimationName {*/
-/*    0%{background-position:50% 0%}*/
-/*    50%{background-position:50% 100%}*/
-/*    100%{background-position:50% 0%}*/
-/*}*/
-/*@-moz-keyframes AnimationName {*/
-/*    0%{background-position:50% 0%}*/
-/*    50%{background-position:50% 100%}*/
-/*    100%{background-position:50% 0%}*/
-/*}*/
-/*@keyframes AnimationName {*/
-/*    0%{background-position:50% 0%}*/
-/*    50%{background-position:50% 100%}*/
-/*    100%{background-position:50% 0%}*/
-/*}*/
-
-
-marquee {
-    font-family: "Times New Roman";
-    font-weight: bold;
-    font-style: italic;
-    color: #FCBE11;
-    font-size: 3.125rem;
-    -webkit-text-stroke-width: 1.25px;
-    -webkit-text-stroke-color: #104626;
-}
-
-#tickertape1 {
-    grid-column: 1;
-    grid-row: 1;
-    border: 10px solid #104626;
-    border-left: 0px;
-    border-right: 0px;
-
-}
-
-#tickertape2 {
-    grid-column: 1;
-    grid-row: 3;
-    border: 10px solid #104626;
-    border-left: 0px;
-    border-right: 0px;
-}
-
-#tickertape3 {
-    grid-column: 2;
-    grid-row: 1 / -1;
-    border: 10px solid #104626;
-}
-
-#marqueetop {
-    transform: translateY(6px) scaleY(3);
-
-}
-
-#marqueebottom {
-    transform: translateY(9px) scaleY(3);
-}
-
-#marqueeright {
-    transform: scaleX(3) scaleY(2) translateX(25px);
 }
 
 #main-wrapper {
@@ -355,14 +282,14 @@ marquee {
 
 }
 
-.postNav{
+.postNav {
     display: flex;
     justify-content: space-between;
     padding-inline: 3rem;
 
 }
 
-.navArrow{
+.navArrow {
     width: unset !important;
     text-decoration: none;
     font-style: normal !important;
@@ -407,6 +334,7 @@ marquee {
     grid-column: 1 / -1;
     margin-inline: auto;
 }
+
 #contact-wrapper > .contact-section > .contact-card {
     aspect-ratio: 1 / 1;
     max-width: 30ch;
@@ -446,6 +374,10 @@ marquee {
     font-family: "Times New Roman";
     font-weight: bold;
     font-style: italic;
+}
+
+.erinoText.stroke-sm {
+    -webkit-text-stroke-width: 0.0175em;
 }
 
 .postPageTitle {
@@ -500,4 +432,3 @@ marquee {
     width: 50%;
     border: #104626 solid 5px;
 }
-
