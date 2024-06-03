@@ -4,7 +4,7 @@
   "description": "**a better more stylized website for me. I've dedicated time into making it more:** \r 1. Austere. \r 2. Mature. \r 3. Uniform. \r 4. Smarter.\r 5. Seamless\r 6. Responsive\r 7. Revitalized \r 8. Modernized.\r 9. Cloud Architecture.\r 10. AI Enabled.\r 11. IoT Native.\r 12. IoT Infrastructure Based.\r 13. Active Directory.\r 14. Working 2019 (Not Patched).\r 15. Portfolio.\r 16. Brutalist.\r 17. Angry.\r 18. Politcal.\r 19. And Most of All Smart.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx @11ty/eleventy --watch --serve"
   },
   "keywords": [],
   "author": "",
