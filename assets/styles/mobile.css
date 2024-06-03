@@ -1,0 +1,50 @@
+/* CSS enabled in responsive mode */
+@media screen and (max-width: 768px) {
+    body {
+        grid-template-columns: 2rem 1fr 2rem;
+        grid-template-rows: 2rem 1fr 2rem;
+    }
+
+    body > aside {
+        grid-column: 1;
+        grid-row: 1 / -1;
+    }
+
+    body > main {
+        grid-column: 2 / -1;
+        grid-row: 1 / -1;
+        grid-template-columns: 1fr 35px;
+        grid-template-rows: 35px 1fr 35px;
+    }
+
+    #tape {
+        background-color: var(--green) !important;
+    }
+
+    body > header {
+        display: none;
+    }
+
+    /*body > nav {*/
+    /*    grid-column: 1 / -1;*/
+    /*    grid-row: 1;*/
+    /*    background-color: yellow;*/
+    /*    display: block;*/
+
+    /*    z-index: 2;*/
+    /*}*/
+
+}
+
+/* CSS disabled in responsive mode */
+@media screen and (min-width: 768px) {
+    /*body > nav {*/
+    /*    visibility: hidden;*/
+    /*    display: none;*/
+    /*}*/
+
+    .navigation-hint {
+        visibility: hidden;
+        display: none;
+    }
+}
