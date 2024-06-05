@@ -99,6 +99,9 @@ html, body {
 #site-main {
     grid-column: 3;
     grid-row: 1 / -1;
+
+    display: flex;
+    flex-direction: column;
 }
 
 #site-header {
