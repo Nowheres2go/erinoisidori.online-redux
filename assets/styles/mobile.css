@@ -64,7 +64,7 @@
 
     .page-index {
         padding: 1.5rem;
-        justify-content: space-between;
+        justify-content: flex-start;
     }
 
     /*    & .header-content {*/
