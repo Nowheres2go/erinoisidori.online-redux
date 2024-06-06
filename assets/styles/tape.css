@@ -57,10 +57,13 @@
     width: 100%;
     height: 100%;
 
-    --tape-size: 3.5rem;
+    --tape-size: 10rem;
     display: grid;
     grid-template-columns: var(--tape-size) 1fr var(--tape-size);
     grid-template-rows: var(--tape-size) 1fr var(--tape-size);
+
+    transition: grid-template-columns 0.5s ease-in-out,
+    grid-template-rows 0.5s ease-in-out;
 }
 
 .tape-wrapper > :not(.tape) {

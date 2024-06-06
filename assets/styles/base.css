@@ -7,7 +7,7 @@
 
     /* borders */
     --border-colour: var(--green);
-    --border-thin-size: 6px;
+    --border-thin-size: 20px;
     --border-thick-size: 20px;
 
     --border-thin: var(--border-thin-size) solid var(--green);
@@ -23,8 +23,8 @@
     --pullout-hidden-width: 0px;
 
     --nav-collapsed-width: 0px;
-    --nav-hidden-width: 0px ;
-    --nav-full-width: 25rem;
+    --nav-hidden-width: 0px;
+    --nav-full-width: 25vw;
 
     /* yellow text */
 
@@ -65,6 +65,13 @@
         display: none;
         visibility: hidden;
     }
+}
+
+* {
+    transition: border-bottom-width 0.5s ease-in-out,
+    border-top-width 0.5s ease-in-out,
+    border-left-width 0.5s ease-in-out,
+    border-right-width 0.5s ease-in-out;
 }
 
 html, body {

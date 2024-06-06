@@ -6,9 +6,12 @@
 
 /* CSS enabled in responsive mode */
 @media screen and (max-width: 1225px) {
+    :root {
+        --border-thin-size: 10px;
+    }
 
     .tape-wrapper {
-        --tape-size: 1rem;
+        --tape-size: 3rem;
     }
 
     input[type="checkbox"]#header-checkbox:checked ~ .layout-wrapper {
