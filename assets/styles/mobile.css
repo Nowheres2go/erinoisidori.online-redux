@@ -6,11 +6,17 @@
 
 /* CSS enabled in responsive mode */
 @media screen and (max-width: 1225px) {
+
+    .tape-wrapper {
+        --tape-size: 1rem;
+    }
+
     input[type="checkbox"]#header-checkbox:checked ~ .layout-wrapper {
         --nav-width: var(--nav-full-width) !important;
     }
 
     .layout-wrapper {
+        --nav-full-width: 80vw;
         --pullout-width: var(--pullout-collapsed-width);
         --nav-width: var(--nav-collapsed-width);
     }
@@ -43,6 +49,19 @@
         opacity: 1 !important;
         transform: translateX(0%);
         pointer-events: none;
+    }
+
+    .card h2 {
+        font-size: 1.75rem;
+    }
+
+    .card p {
+        font-size: 1.35rem;
+    }
+
+    .page-index {
+        padding: 1.5rem;
+        justify-content: space-between;
     }
 
     /*    & .header-content {*/
