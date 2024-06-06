@@ -30,7 +30,7 @@
 
     & .text-big {
         color: #FCBE11;
-        -webkit-text-stroke-width: 0.04em;
+        -webkit-text-stroke-width: 0.1vw;
         -webkit-text-stroke-color: #104626;
 
         font-family: "Times New Roman";

@@ -1,4 +1,4 @@
-.page-index {
+.card-grid {
     display: flex;
     flex-direction: row;
     gap: 2rem;
@@ -15,7 +15,20 @@
     }
 }
 
+.card-full {
+    display: flex;
+    flex-direction: column;
+    padding: 4rem;
+
+    & .card {
+        --title-size: 6rem;
+        --text-size: 5rem;
+    }
+}
+
 .card {
+    --title-size: 3rem;
+    --text-size: 1.9rem;
     border: var(--green) solid 8px;
     background-color: var(--beige);
     display: flex;
@@ -30,6 +43,12 @@
     object-fit: cover;
 }
 
+.card .img-md {
+    margin-inline: 10rem;
+    margin-block: 5rem;
+    border: var(--border-thin);
+    border-width: 4px;
+}
 
 .card h2, .card p {
     border-bottom: 3px solid var(--green);
@@ -37,14 +56,14 @@
 }
 
 .card h2 {
-    font-size: 3rem;
+    font-size: var(--title-size);
     -webkit-text-stroke: 0.35px;
     text-align: center;
 }
 
 .card p {
     text-align: center;
-    font-size: 1.9rem;
+    font-size: var(--text-size);
 }
 
 .card .post-spacer {

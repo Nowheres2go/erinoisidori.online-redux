@@ -1,8 +1,5 @@
 module.exports = function(config) {
-    config.addPassthroughCopy("./assets/styles/**")
-    config.addPassthroughCopy("./assets/svg/**")
-    config.addPassthroughCopy("./assets/scripts/**")
-    config.addPassthroughCopy("./assets/blog/**")
+    config.addPassthroughCopy("./assets/**")
     config.addPassthroughCopy("./oldworks/**")
 
 
