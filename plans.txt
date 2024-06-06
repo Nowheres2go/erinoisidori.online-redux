@@ -1,8 +1,0 @@
-- update index.html with new artworks or blog posts created
-- work for both mobile and pc
-- sticky navigation
-- interactive
-- highly stylized but pro
-- javascript somewhere bruh
-- ticker at bottom
-- add like an animated gradient kinda thing to the background (in a similar vein as youtubes backlight emulation)
