@@ -232,6 +232,10 @@ html, body {
     .icon {
         border-bottom: var(--border-thin);
         background-color: var(--gray);
+        object-fit: cover;
+        width: 100%;
+        height: fit-content;
+        padding: 0.75rem;
     }
 
     & .nav-group {
