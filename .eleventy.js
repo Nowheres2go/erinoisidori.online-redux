@@ -4,5 +4,11 @@ module.exports = function(config) {
 
 
     config.addFilter("shortDate", dateObj => {
+        if (dateObj === undefined) return dateObj
         return dateObj.toLocaleDateString('en-CA');
-    });}
+    });
+
+    config.addFilter("debug", data => {
+        return JSON.stringify(data)
+    })
+}

@@ -1,5 +1,30 @@
 ---
 layout: online.html
 ---
+{% assign previousPost = collections.posts | getPreviousCollectionItem %}
+{% assign nextPost = collections.posts | getNextCollectionItem %}
 
-{{ content }}
+
+{% if wrap == false %}
+    {{content}}
+{% else %}
+
+<div id="main-wrapper" class="card-full">
+    <article class="card">
+        <nav class="header-nav">
+            <h2 class="text-big">{{ title }}</h2>
+            <p class="text-big">{{date | shortDate}}</p>
+<!--            {%if previousPost.url == '' %}-->
+            <a id="nav-previous" class="text-big" href="">◅</a>
+<!--            {%else%}-->
+<!--            <a id="nav-previous" class="text-big" href="{{ previousPost.url }}">◅</a>-->
+<!--            {%endif%}-->
+            <a id="nav-next" class="text-big" href="{{ nextPost.url }}">▻</a>
+            <a id="nav-back" class="text-big" href="/blog">BACK</a>
+        </nav>
+        <div class="content text-big">
+            {{ content }}
+        </div>
+    </article>
+</div>
+{% endif %}
