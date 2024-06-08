@@ -4,12 +4,15 @@
         --border-thin-size: 10px;
     }
 
-    .tape-wrapper {
+    .tape {
         --tape-size: 3rem;
+    }
+    input[type="checkbox"]#header-checkbox ~ .layout-wrapper {
+        --nav-width: 0 !important;
     }
 
     input[type="checkbox"]#header-checkbox:checked ~ .layout-wrapper {
-        --nav-width: var(--nav-full-width) !important;
+        --nav-width: 20rem !important;
 
         .tape-wrapper {
             grid-template-columns: var(--tape-size) 1fr 1rem;
@@ -66,7 +69,7 @@
     }
 
     .nav-item {
-        font-size: 7vw !important;
+        font-size: 2rem !important;
     }
 
     /*    & .header-content {*/

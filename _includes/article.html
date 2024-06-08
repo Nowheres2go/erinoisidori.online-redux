@@ -26,6 +26,12 @@ layout: layout.html
             {%endif%}
             <a id="nav-back" class="text-big" href="/blog">BACK</a>
         </nav>
+
+        {% if image %}
+        <div id="article-image-wrapper" class="article-image-wrapper">
+            <img class="article-image" src="{{ image }}"/>
+        </div>
+        {% endif %}
         <div class="content text-big">
             {{ content }}
         </div>

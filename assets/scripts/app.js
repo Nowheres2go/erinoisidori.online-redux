@@ -1,23 +1,35 @@
+// // article full-screen image handler
+// (() => {
+//     const wrapperSelector = '#article-image-warpper'
+//
+//     document.addEventListener("mousedown", e => {
+//         if (e.target.matches)
+//     })
+// })()
+
 // card data-href handler
 (() => {
     const getCardUrl = (element) => {
-        if (!element.matches('[data-href] *, [data-href]')) {
+        if (!element.matches('.card.clickable *, .card.clickable')) {
             console.log('no match', element)
             return null
         }
 
-        if (!element.hasAttribute('data-href')) {
-            if (!element.parentElement) return null
-
-            return getCardUrl(element.parentElement)
-        } else {
-            return element.querySelector('a')
+        let current = element
+        while (!current.matches('.card.clickable')) {
+            console.log({current})
+            current = element.parentElement
+            if (!!current) break
         }
+
+        console.log({current})
+
+        return current.querySelector('a')
     }
 
     document.addEventListener('click', e => {
         const clicked = e.target
-        const clickable = clicked.matches('[data-href] *')
+        const clickable = clicked.matches('.card.clickable *, .card.clickable')
         if (clickable) {
             getCardUrl(clicked).click()
         }
