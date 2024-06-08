@@ -9,6 +9,11 @@
     }
     input[type="checkbox"]#header-checkbox ~ .layout-wrapper {
         --nav-width: 0 !important;
+
+        & #main-content {
+            width: 100%;
+            transition: width 0.2s;
+        }
     }
 
     input[type="checkbox"]#header-checkbox:checked ~ .layout-wrapper {
@@ -16,6 +21,10 @@
 
         .tape-wrapper {
             grid-template-columns: var(--tape-size) 1fr 1rem;
+        }
+
+        & #main-content {
+            width: 60ch;
         }
     }
 
