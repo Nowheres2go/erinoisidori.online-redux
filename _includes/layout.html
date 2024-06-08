@@ -20,18 +20,14 @@ title: erino isidori!
 <input id="header-checkbox" type="checkbox"/>
 <label class="header-checkbox" for="header-checkbox"></label>
 <div class="layout-wrapper">
-
-
-    <header id="site-header">
+    <header>
         <div class="header-control">
             <img class="header-toggle" src="/assets/svg/icon/bars-solid.svg"/>
             <h1 class="header-text text-big">TAP HERE</h1>
             <div class="header-spacer"></div>
         </div>
     </header>
-
-
-    <nav id="site-nav" class="header-content">
+    <nav>
         <img class="icon"
              alt="the insignia of erino isidori, online..."
              src="/assets/svg/page-header.svg"/>
@@ -50,41 +46,36 @@ title: erino isidori!
             <a class="nav-item text-big" href="/">HOME</a>
         </div>
     </nav>
-    <main id="site-main">
-        <div class="tape-wrapper">
+    <div class="tape-grid">
+        <div class="main-wrapper">
+            <main id="main-content">
+                {{ content }}
+            </main>
+        </div>
+        <div aria-hidden="true" class="tape-container">
             <div class="tape" aria-hidden="true">
-                <div class="tape-wrapper">
-                    <div class="tape-inner">
-                        <p class="erinoText stroke-sm"> <3 VISITING FOR YOU THANK WEBSITE ISIDORI'S ERINO IS THIS YOU
-                            ARE HOW
-                            HIII</p>
-                    </div>
+                <div class="tape-inner">
+                    <p class="erinoText stroke-sm"> <3 VISITING FOR YOU THANK WEBSITE ISIDORI'S ERINO IS THIS YOU
+                        ARE HOW
+                        HIII</p>
                 </div>
             </div>
             <div class="tape" aria-hidden="true">
-                <div class="tape-wrapper">
-                    <div class="tape-inner">
-                        <p class="erinoText stroke-sm">MAYBE THIS TIME WE CAN GET IT RIGHT</p>
-                    </div>
+                <div class="tape-inner">
+                    <p class="erinoText stroke-sm">MAYBE THIS TIME WE CAN GET IT RIGHT</p>
                 </div>
             </div>
             <div class="tape vertical" aria-hidden="true">
-                <div class="tape-wrapper">
-                    <div class="tape-inner">
-                        <p class="erinoText stroke-sm">EVERYTHING ALL THE TIME IS SUBJECT TO CHANGE WHETHER YOU AND I
-                            LIKE IT OR
-                            NOT. FIND BEAUTY IN CHANGE AND NOT BITTERNESS. THE TWENTY TWENTIES ARE FOR BRINGING BACK
-                            LOVE AND WE
-                            KEEP BUILDING IT FOREVER</p>
-                    </div>
+                <div class="tape-inner">
+                    <p class="erinoText stroke-sm">EVERYTHING ALL THE TIME IS SUBJECT TO CHANGE WHETHER YOU AND I
+                        LIKE IT OR
+                        NOT. FIND BEAUTY IN CHANGE AND NOT BITTERNESS. THE TWENTY TWENTIES ARE FOR BRINGING BACK
+                        LOVE AND WE
+                        KEEP BUILDING IT FOREVER</p>
                 </div>
             </div>
-            <div id="main-content">
-                {{ content }}
-            </div>
         </div>
-    </main>
-
+    </div>
     <script src="/assets/scripts/app.js" defer></script>
 </div>
 </body>

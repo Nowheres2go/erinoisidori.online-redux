@@ -1,11 +1,11 @@
 ---
-layout: online.html
+layout: page.html
 title: index
 ---
 
-<div id="main-wrapper" class="card-grid">
+<section class="card-grid">
     {% for post in collections.published %}
-    <article class="card" data-href="{{post.url}}">
+    <article class="card clickable hover" data-href="{{post.url}}">
         <h2 class="text-big"><a href="{{post.url}}">{{ post.data.title }}</a></h2>
         <p class="text-big">
             <span class="post-type">{{ post.data.type }}</span>
@@ -19,4 +19,4 @@ title: index
         <p>Nothing is here yet :(</p>
     </article>
     {% endfor %}
-</div>
+</section>

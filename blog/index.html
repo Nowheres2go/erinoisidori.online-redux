@@ -1,10 +1,11 @@
 ---
-layout: online.html
+layout: layout.html
 title: blog
 ---
 
+<h1>Blog</h1>
 
-<div id="main-wrapper" class="card-grid">
+<section class="card-grid">
     {% for post in collections.published %}
     {% if post in collections.posts %}
     <article class="card" data-href="{{post.url}}">
@@ -22,4 +23,4 @@ title: blog
         <p>Nothing is here yet :(</p>
     </article>
     {% endfor %}
-</div>
+</section>

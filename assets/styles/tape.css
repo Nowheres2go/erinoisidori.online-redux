@@ -1,15 +1,6 @@
 /**
   * tape.css
  **/
-
-/** Individual tickertape properties **/
-/** (note: don't touch grid-column/row! these classes style children of the 'main' element, which is a display: grid.) **/
-/**
-    Modifiable properties:
-        --duration: time unit, determines how long the scroll takes
-        --initial: the initial position of the scroll, set to a negative number to be on the "left" or "top"
-        --end: the final position of the scroll, set to a positive number to be on the "right" or "bottom"
-**/
 .tape {
     border-width: 10px !important;
 }
@@ -44,8 +35,6 @@
     --end: 100%; /** TODO fine-tune **/
 }
 
-/** Tickertape vertical styling tweaks **/
-/** Change scaleX/scaleY to change the 'kerning' / 'stretch' of the text **/
 .tape:not(.vertical) .tape-inner p {
     font-size: calc(100px);
     transform: scaleY(1.475) scaleX(0.5); /** TODO fine-tune **/
@@ -57,26 +46,38 @@
     transform: scaleY(0.7) scaleX(1.48); /** TODO fine-tune **/
 }
 
-.tape-wrapper {
+.tape-grid {
+    --tape-size: 7rem;
+    display: grid;
     width: 100%;
     height: 100%;
 
-    --tape-size: 7rem;
-    display: grid;
     grid-template-columns: var(--tape-size) 1fr var(--tape-size);
     grid-template-rows: var(--tape-size) 1fr var(--tape-size);
 
     transition: grid-template-columns 0.5s ease-in-out,
     grid-template-rows 0.5s ease-in-out;
+
+    & > :not(.tape-container) {
+        grid-column: 1 / -2;
+        grid-row: 2;
+    }
+
+    & > .tape-container {
+        pointer-events: none;
+        display: grid;
+
+        grid-column: 1 / -1;
+        grid-row: 1 / -1;
+
+        grid-template-columns: subgrid;
+        grid-template-rows: subgrid;
+
+        width: 100%;
+        height: 100%;
+    }
 }
 
-.tape-wrapper > :not(.tape) {
-    grid-column: 1 / 3;
-    grid-row: 2;
-}
-
-/** Tickertape boilerplate code **/
-/** (roughly don't ish touch) **/
 .tape {
     width: 100%;
     height: 100%;
