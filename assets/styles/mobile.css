@@ -34,6 +34,14 @@
         --nav-width: var(--nav-collapsed-width);
     }
 
+    .card-grid {
+
+        & .card {
+            max-width: 30%;
+            flex: 1 1 30%;
+        }
+    }
+
     input[type="checkbox"]#header-checkbox {
         display: none;
     }
@@ -70,11 +78,6 @@
 
     .card p {
         font-size: 1.35rem;
-    }
-
-    .card-grid {
-        padding: 1.5rem;
-        justify-content: flex-start;
     }
 
     .nav-item {
