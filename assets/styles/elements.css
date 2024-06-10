@@ -24,10 +24,6 @@
 
     padding: 2rem;
     gap: 2rem;
-
-    margin-inline: auto;
-
-    width: min-content;
     height: 100%;
 
 
@@ -39,6 +35,8 @@
         max-width: 30%;
         aspect-ratio: 1 / 1;
         overflow: hidden;
+
+        margin-inline: auto;
     }
 }
 
@@ -120,7 +118,6 @@
 
         & .article-image {
             border-inline: 2px solid var(--green);
-            max-height: 500px;
 
             min-height: 0;
             min-width: 0;
