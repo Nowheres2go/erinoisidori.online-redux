@@ -12,19 +12,24 @@ layout: layout.html
 <div id="main-wrapper" class="card-full">
     <article class="card">
         <nav class="header-nav">
-            <h2 class="text-big">{{ title }}</h2>
-            <p class="text-big">{{date | shortDate}}</p>
-            <!--            {%if previousPost.url == '' %}-->
-            <!--            {%else%}-->
-            <!--            <a id="nav-previous" class="text-big" href="{{ previousPost.url }}">◅</a>-->
-            <!--            {%endif%}-->
-            {% if previousPost.url != '' %}
-            <a id="nav-previous" class="text-big" href="{{ previousPost.url }}">◅</a>
-            {%endif%}
-            {% if nextPost.url != '' %}
-            <a id="nav-next" class="text-big" href="{{ nextPost.url }}">▻</a>
-            {%endif%}
-            <a id="nav-back" class="text-big" href="/blog">BACK</a>
+            <div class="nav-text">
+                {% if previousPost.url != '' %}
+                <a id="nav-previous" class="text-big" href="{{ previousPost.url }}">◅</a>
+                {%endif%}
+
+                <h2 class="text-big">{{ title }}</h2>
+
+                {% if nextPost.url != '' %}
+                <a id="nav-next" class="text-big" href="{{ nextPost.url }}">▻</a>
+                {%endif%}
+            </div>
+            <div class="nav-links">
+                {% if backUrl != '' %}
+                <a id="nav-back" class="text-big" href="{{ backUrl }}">BACK</a>
+                {% endif %}
+                <p class="text-big">{{date | shortDate}}</p>
+                <p class="text-big"></p>
+            </div>
         </nav>
 
         {% if image %}

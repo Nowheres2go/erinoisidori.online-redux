@@ -1,11 +1,17 @@
 // // article full-screen image handler
-// (() => {
-//     const wrapperSelector = '#article-image-warpper'
-//
-//     document.addEventListener("mousedown", e => {
-//         if (e.target.matches)
-//     })
-// })()
+(() => {
+    // const wrapperSelector = '#article-image-warpper'
+    //
+    // document.addEventListener("mousedown", e => {
+    //     if (e.target.matches)
+    // })
+
+    const image = document.querySelector("img.article-image")
+
+    if (!!image) {
+        image.scrollTo()
+    }
+})()
 
 // card data-href handler
 (() => {
