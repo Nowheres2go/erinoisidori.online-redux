@@ -33,9 +33,10 @@ layout: layout.html
         </nav>
 
         {% if image %}
-        <div id="article-image-wrapper" class="article-image-wrapper">
-            <img class="article-image" src="{{ image }}"/>
-        </div>
+            <div id="article-image-wrapper" class="article-image-wrapper">
+                <img id="article-image" class="article-image" src="{{ image }}"/>
+                <button id="article-fullscreen">fullscreen</button>
+            </div>
         {% endif %}
         <div class="content text-big">
             {{ content }}

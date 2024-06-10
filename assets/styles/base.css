@@ -42,7 +42,7 @@
 
     /* yellow text - link support */
 
-    & a.text-big {
+    & a.text-big, & a .text-big {
         text-decoration: none;
         transition: text-shadow 0.2s ease-in;
     }
@@ -100,6 +100,93 @@ html, body {
     border: var(--border-thin);
 
     overflow: hidden;
+
+    & .fullscreen-image-viewer {
+        pointer-events: none;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out,
+                    background-color 0.2s ease-in-out,
+                    backdrop-filter 0.2s ease-in-out;
+        background-color: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(2px);
+        z-index: 2;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        padding-inline: 5vw;
+        padding-block: 2vw;
+
+        min-height: 800px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        & #fullscreen-image {
+            object-fit: contain;
+        }
+
+
+        & nav {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
+            max-width: 50ch;
+            width: 100%;
+
+            /*& #image-title {*/
+            /*    grid-row: 1;*/
+            /*    grid-column: 1;*/
+            /*}*/
+
+            & #image-title, & #image-date {
+                grid-column: 1 / -1;
+                grid-row: 1;
+            }
+
+            & #image-title {
+                text-align: start;
+            }
+
+            & #image-date {
+                text-align: end;
+            }
+
+            & #image-save {
+                grid-column: 1;
+                grid-row: 2;
+            }
+
+            & #image-exit {
+                grid-column: 2;
+                grid-row: 2;
+            }
+
+            & #image-share {
+                grid-column: 3;
+                grid-row: 2;
+            }
+        }
+
+        & .fullscreen-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    & .fullscreen-image-viewer.show {
+        opacity: 1;
+        pointer-events: all;
+    }
 
     & > header,
     & > nav,
@@ -277,6 +364,8 @@ html, body {
 
             overflow-y: scroll;
             overflow-x: clip;
+
+            position: relative;
         }
 
         & #main-content {

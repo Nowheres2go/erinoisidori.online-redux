@@ -1,17 +1,19 @@
 // // article full-screen image handler
 (() => {
-    // const wrapperSelector = '#article-image-warpper'
-    //
-    // document.addEventListener("mousedown", e => {
-    //     if (e.target.matches)
-    // })
+    const fullscreenWrapper = document.querySelector('.fullscreen-image-viewer')
+    const fullscreenImage = document.querySelector('#fullscreen-image')
 
-    const image = document.querySelector("img.article-image")
+    const articleWrapper = document.querySelector('#article-image-wrapper')
+    const articleImage = articleWrapper.querySelector('#article-image')
 
-    if (!!image) {
-        image.scrollTo()
-    }
-})()
+    const open = () => fullscreenWrapper.classList.add('show')
+    const close = () => fullscreenWrapper.classList.remove('show')
+
+    articleWrapper.addEventListener('click', open)
+    fullscreenWrapper.addEventListener('click', close)
+
+    fullscreenImage.src = articleImage.src
+})();
 
 // card data-href handler
 (() => {
