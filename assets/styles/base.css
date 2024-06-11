@@ -72,7 +72,8 @@
     transition: border-bottom-width 0.5s ease-in-out,
     border-top-width 0.5s ease-in-out,
     border-left-width 0.5s ease-in-out,
-    border-right-width 0.5s ease-in-out;
+    border-right-width 0.5s ease-in-out,
+    text-shadow 0.2s ease-in;
 }
 
 html, body {
@@ -117,8 +118,8 @@ html, body {
 
         opacity: 0;
         transition: opacity 0.2s ease-in-out,
-                    background-color 0.2s ease-in-out,
-                    backdrop-filter 0.2s ease-in-out;
+        background-color 0.2s ease-in-out,
+        backdrop-filter 0.2s ease-in-out;
         background-color: rgba(0, 0, 0, 0.7);
         backdrop-filter: blur(2px);
         z-index: 2;
@@ -318,7 +319,8 @@ html, body {
         & .nav-item {
             display: block;
             height: min-content;
-            transition: font-size var(--mobile-transition-speed) ease;
+            transition: font-size var(--mobile-transition-speed) ease,
+                        text-shadow 0.2s ease-in;
             font-size: calc(1.25vw + 0.65rem);
             position: relative;
         }
