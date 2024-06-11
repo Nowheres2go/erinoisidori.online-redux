@@ -20,16 +20,18 @@ title: erino isidori!
 <input id="header-checkbox" type="checkbox"/>
 <label class="header-checkbox" for="header-checkbox"></label>
 <div class="layout-wrapper">
-    <section aria-hidden="true" class="fullscreen-image-viewer">
-        <img id="fullscreen-image" src="/assets/art/watertower.png"/>
-        <nav>
-            <h2 id="image-title"></h2>
-            <h2 id="image-date"></h2>
-            <button id="image-save">save</button>
-            <button id="image-share">share</button>
-            <button id="image-exit">exit</button>
-        </nav>
-    </section>
+    <div class="fullscreen-image-viewer">
+        <section aria-hidden="true" class="fullscreen-image-wrapper">
+            <img id="fullscreen-image" src="/assets/art/watertower.png"/>
+            <nav>
+                <h2 id="image-title"></h2>
+                <h2 id="image-date"></h2>
+                <button id="image-save">save</button>
+                <button id="image-share">share</button>
+                <button id="image-exit">exit</button>
+            </nav>
+        </section>
+    </div>
     <header>
         <div class="header-control">
             <img class="header-toggle" src="/assets/svg/icon/bars-solid.svg"/>

@@ -7,6 +7,7 @@
     .tape {
         --tape-size: 3rem;
     }
+
     input[type="checkbox"]#header-checkbox ~ .layout-wrapper {
         --nav-width: 0 !important;
 
@@ -18,10 +19,6 @@
 
     input[type="checkbox"]#header-checkbox:checked ~ .layout-wrapper {
         --nav-width: 20rem !important;
-
-        .tape-wrapper {
-            grid-template-columns: var(--tape-size) 1fr 1rem;
-        }
 
         & #main-content {
             width: 60ch;
@@ -82,6 +79,14 @@
 
     .nav-item {
         font-size: 2rem !important;
+    }
+
+    .tape-grid {
+        --tape-size: 2rem !important;
+
+        & .tape {
+            background-color: var(--green);
+        }
     }
 
     /*    & .header-content {*/
