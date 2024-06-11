@@ -20,8 +20,6 @@ module.exports = function (config) {
         }
 
         for (const tag of data.data.tags) {
-
-            console.log(tag, data.data.tags)
             if (!!names[tag]) return names[tag]
         }
 
