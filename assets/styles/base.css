@@ -7,8 +7,8 @@
 
     /* borders */
     --border-colour: var(--green);
-    --border-thin-size: 20px;
-    --border-thick-size: 20px;
+    --border-thin-size: 10px;
+    --border-thick-size: 15px;
 
     --border-thin: var(--border-thin-size) solid var(--green);
     --border-thick: var(--border-thick-size) solid var(--green);
@@ -291,7 +291,7 @@ html, body {
         background-color: var(--white);
         transition: background-color var(--mobile-transition-speed) ease-in-out;
         height: 100%;
-        border-right: var(--border-thin);
+        border: var(--border-thick);
 
         display: flex;
         flex-direction: column;
