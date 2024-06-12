@@ -1,1 +1,1 @@
-{ "layout": "article.html", "backUrl": "/works" }
+{ "layout": "article.html", "backUrl": "/works", "show_date": true, "show_type": false }

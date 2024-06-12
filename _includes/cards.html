@@ -1,5 +1,7 @@
 ---
 layout: page.html
+show_date: false
+show_type: true
 ---
 
 <section class="card-grid">
@@ -8,7 +10,12 @@ layout: page.html
             <article class="card clickable hover">
                 <h2 class="text-big"><a href="{{post.url}}">{{ post.data.title }}</a></h2>
                 <p class="text-big">
+                    {% if show_type %}
                     <span class="post-type">{{ post | postType }}</span>
+                    {% endif %}
+                    {% if show_date %}
+                    <span class="post-type">{{ post.date | shortDate }}</span>
+                    {% endif %}
 <!--                    <span class="post-date">{{ post.date | shortDate }}</span>-->
                 </p>
                 <div class="card-image">
