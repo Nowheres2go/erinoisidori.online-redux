@@ -3,9 +3,30 @@ html {
     --green: #104626;
 }
 
+/* Allow scrolling on mobile */
+@media (max-width: 768px) {
+    html {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
+
 img {
     width: 100%;
     height: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Override global img rules for postPageImg to prevent cropping - MUST be strong */
+.postPageImg,
+img.postPageImg,
+img[class*="postPageImg"] {
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    max-width: 100% !important;
+    max-height: none !important;
 }
 
 .indeximg {
@@ -13,6 +34,14 @@ img {
     object-fit: cover;
     width: 100%;
     height: 100%;
+    max-width: 100%;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* Image optimization hints */
+.indeximg[loading="lazy"] {
+    content-visibility: auto;
 }
 
 * {
@@ -25,13 +54,32 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: black;
+    overflow-x: hidden;
 
     display: grid;
     grid-template-columns: 33% 1fr;
 }
 
+/* Desktop: restore original layout */
+@media (min-width: 1025px) {
+    html {
+        overflow: hidden;
+    }
+
+    body {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        max-width: none;
+    }
+
+    main {
+        overflow: hidden;
+    }
+}
+
 aside {
-    background-color: blue;
+    background-color: white;
     display: flex;
     flex-direction: column;
     min-height: 0;
@@ -69,6 +117,7 @@ main {
       '. .'
       '. .'
       '. .';
+    overflow: hidden;
 }
 
 #main-wrapper {
@@ -208,9 +257,11 @@ main {
     height: 40vh;
     transition: transform 0.5s ease-in-out;
     text-decoration: none;
+    position: relative;
 }
 
-.postCard:hover {
+.postCard:hover,
+.postCard:focus {
     transform: scale(1.1);
 }
 
@@ -220,7 +271,7 @@ main {
     z-index: -1;
     width: 100%;
     height: 100%;
-    opacity: 30%;
+    opacity: 0;
     border-radius: 5px;
     box-shadow: 20px 20px 0px rgb(30, 30, 30, 0.8);
     transition: opacity 0.3s ease-in-out;
@@ -279,7 +330,10 @@ main {
     /*transition: transform 0.5s ease-in-out;*/
     align-items: center;
     width: 100%;
-
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: visible;
 }
 
 .postNav {
@@ -382,13 +436,13 @@ main {
 
 .postPageTitle {
     font-family: "Times New Roman";
-    font-weight: bold;
+    font-weight: normal;
     font-style: italic;
     color: #FCBE11;
     font-size: 5rem;
     /*padding-left: 20px;*/
     text-align: center;
-    -webkit-text-stroke-width: 2.5px;
+    -webkit-text-stroke-width: 1.5px;
     -webkit-text-stroke-color: #104626;
     width: 100%;
 }
@@ -400,27 +454,97 @@ main {
     color: #FCBE11;
     font-size: 3.125rem;
     padding-left: 20px;
+    padding-right: 20px;
     text-align: center;
     border-top: #104626 solid 2.5px;
     border-bottom: #104626 solid 2.5px;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #104626;
     width: 100%;
+    line-height: 1.4;
+}
+
+/* Desktop: ensure proper sizing */
+@media (min-width: 769px) {
+    .postPagePara {
+        font-size: 3.125rem;
+    }
 }
 
 .postPageImg {
-    display: flex;
-    /*object-fit: contain;*/
-    flex-direction: column;
+    display: block;
+    object-fit: contain !important;
     margin-top: 10px;
     margin-bottom: 10px;
     border: #104626 solid 5px;
-    height: 100%;
-    width: 100%;
-    max-height: 100svh;
-    max-width: 90rem;
-    margin-inline: 3rem;
+    box-sizing: border-box;
+    width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: calc(100vh - 300px) !important;
+    margin-inline: auto;
+    object-position: center !important;
+    padding: 0;
 }
+
+/* Desktop: ensure border wraps properly and handle wide images - scale down, don't crop */
+@media (min-width: 1025px) {
+    .postPage {
+        max-width: calc(100vw - 33% - 100px);
+    }
+    
+    /* CRITICAL: Force images to scale down, NEVER crop - use more aggressive constraints */
+    .postPageImg,
+    img.postPageImg,
+    img[class*="postPageImg"],
+    .postPage img.postPageImg,
+    .postPage img[class*="postPageImg"],
+    #main-content img.postPageImg,
+    #main-content .postPage img.postPageImg,
+    #main-wrapper img.postPageImg,
+    #main-wrapper .postPage img.postPageImg {
+        object-fit: contain !important;
+        object-position: center !important;
+        width: auto !important;
+        height: auto !important;
+        /* Calculate available width more accurately - account for sidebar (33%), borders, and padding */
+        max-width: calc(100vw - 33% - 120px) !important;
+        max-height: calc(100vh - 350px) !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
+        flex-shrink: 1 !important;
+        margin-inline: auto !important;
+        display: block !important;
+    }
+    
+    /* Ensure container never constrains images */
+    .postPage {
+        min-width: 0 !important;
+        min-height: 0 !important;
+        overflow-x: hidden !important;
+        overflow-y: visible !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Ensure parent containers don't constrain */
+    #main-content,
+    #main-wrapper {
+        min-width: 0 !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* Override ANY width/height constraints from parent containers */
+    #main-content .postPageImg,
+    #main-wrapper .postPageImg,
+    .postPage .postPageImg {
+        max-width: calc(100vw - 33% - 120px) !important;
+        width: auto !important;
+        height: auto !important;
+    }
+    
+}
+
 
 
 .aboutMeImg {
@@ -428,7 +552,587 @@ main {
     flex-direction: column;
     margin-top: 10px;
     margin-bottom: 10px;
-    height: 80%;
-    width: 50%;
+    max-height: 80%;
+    max-width: 50%;
+    height: auto;
+    width: auto;
     border: #104626 solid 5px;
+    object-fit: contain;
+    box-sizing: border-box;
+}
+
+/**
+*** HAMBURGER MENU BUTTON
+**/
+
+.menu-toggle {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1002;
+    background: #104626;
+    border: 3px solid #FCBE11;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 8px;
+    box-shadow: 4px 4px 0px rgba(30, 30, 30, 0.8);
+    transition: transform 0.3s ease;
+    border-radius: 4px;
+    visibility: hidden;
+}
+
+.menu-toggle:hover {
+    transform: scale(1.05);
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #FCBE11;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/**
+*** RESPONSIVE DESIGN
+**/
+
+/* Mobile: Stack sidebar on top, single column cards */
+/* Use max-width to include tablets and rotated phones */
+@media (max-width: 1024px) {
+    html {
+        overflow-y: auto;
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+    }
+
+    body {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        height: auto;
+        min-height: 100vh;
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    .menu-toggle {
+        display: flex !important;
+        visibility: visible !important;
+    }
+
+    aside {
+        order: 1;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: calc(100vw - 60px);
+        max-width: calc(100vw - 60px);
+        height: calc(100vh - 60px);
+        max-height: calc(100vh - 60px);
+        z-index: 1001;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+        overflow-x: hidden;
+        overflow-y: auto;
+        clip-path: inset(0 0 0 0);
+        padding-right: 0;
+        box-sizing: border-box;
+    }
+
+    /* Ensure menu is completely hidden when closed - use overflow hidden on parent */
+    body {
+        overflow-x: hidden;
+    }
+
+    aside:not(.menu-open) {
+        pointer-events: none;
+        transform: translateX(-100%);
+        clip-path: inset(0 100% 0 0);
+        visibility: hidden;
+    }
+
+    aside.menu-open {
+        visibility: visible;
+        transform: translateX(0);
+        pointer-events: auto;
+    }
+
+    /* Remove grey overlay - menu should sit between marquees without covering them */
+    body.menu-active::before {
+        display: none;
+    }
+
+    /* Keep marquee animations running when menu is open */
+    body.menu-active .tape .tape-inner {
+        animation-play-state: running !important;
+    }
+
+    aside header {
+        max-height: 150px;
+    }
+
+    #erinotitle {
+        border: 10px solid #104626;
+    }
+
+    #navLinks {
+        border: 10px solid #104626;
+        border-top: 0px;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        min-height: auto;
+        padding: 1rem;
+        box-sizing: border-box;
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        display: grid;
+        gap: 0.5rem;
+    }
+    
+    /* Ensure all grid items are centered and don't crop text */
+    #navLinks > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.25rem;
+        box-sizing: border-box;
+        min-width: 0;
+        min-height: 0;
+        overflow: visible;
+    }
+    
+    /* Ensure CONTACT doesn't overflow - center text properly */
+    #navLinks a {
+        text-align: center;
+        padding: 0.5rem;
+        margin: 0;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        white-space: nowrap;
+        overflow: visible;
+        text-overflow: clip;
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        transform: scaleY(1.5);
+    }
+    
+    /* Reduce font size for CONTACT to prevent overflow */
+    #navLinks .div10 a {
+        font-size: clamp(1.3rem, 4.5vw, 1.75rem);
+        transform: scaleY(1.5);
+    }
+
+    #navLinks * {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+    }
+
+
+    .div1 {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    .div2 {
+        grid-area: 1 / 2 / 2 / 3;
+    }
+
+    .div3 {
+        grid-area: 1 / 3 / 2 / 4;
+    }
+
+    .div4 {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    .div5 {
+        grid-area: 2 / 2 / 3 / 3;
+    }
+
+    .div6 {
+        grid-area: 2 / 3 / 3 / 4;
+    }
+
+    .div7 {
+        grid-area: 3 / 1 / 4 / 2;
+    }
+
+    .div8 {
+        grid-area: 3 / 2 / 4 / 3;
+    }
+
+    .div9 {
+        grid-area: 3 / 3 / 4 / 4;
+    }
+
+    .div10 {
+        grid-area: 4 / 1 / 5 / 4;
+    }
+
+    main {
+        order: 2;
+        grid-template-columns: 1fr;
+        grid-template-rows: 60px 1fr;
+        min-height: 100vh;
+        width: calc(100vw - 60px);
+        max-width: calc(100vw - 60px);
+        margin-left: 0;
+        margin-right: 60px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background-color: #d9d9d9;
+        position: relative;
+    }
+
+    #main-wrapper {
+        grid-column: 1;
+        grid-row: 2;
+        width: 100%;
+        max-width: calc(100vw - 60px);
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding-right: 0;
+        position: relative;
+        z-index: 0;
+    }
+
+    #main-content {
+        width: 100%;
+        max-width: calc(100vw - 60px);
+        overflow-x: hidden;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 0;
+        display: flex;
+    }
+
+    /* Keep tape animations visible on mobile, but adjust size */
+    .tape {
+        overflow-x: clip;
+        overflow-y: visible;
+        z-index: 0;
+        background-color: #d9d9d9;
+    }
+    
+    /* Reduce tape border thickness on mobile to match desktop - border around grey background */
+    .tape::after {
+        border-width: 5px;
+        border-color: #104626;
+    }
+
+    .tape.vertical {
+        display: block;
+        width: 60px;
+        max-width: 60px;
+        height: 100vh;
+        min-height: 100vh;
+        position: fixed;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 0;
+        writing-mode: vertical-rl;
+        background-color: #d9d9d9;
+    }
+    
+    .tape.vertical::after {
+        border-width: 5px;
+        border-color: #104626;
+    }
+    
+    /* Ensure horizontal tape has grey background with green border */
+    .tape:not(.vertical) {
+        background-color: #d9d9d9;
+    }
+
+    /* Hide bottom marquee on mobile - only keep top and right vertical */
+    .tape:nth-of-type(2) {
+        display: none;
+    }
+
+    .tape:not(.vertical) {
+        grid-column: 1;
+        height: 60px;
+        width: calc(100vw - 60px);
+        max-width: calc(100vw - 60px);
+        position: relative;
+        background-color: #d9d9d9;
+    }
+
+    .tape-wrapper {
+        max-width: 100%;
+        overflow-x: clip;
+        overflow-y: visible;
+    }
+    
+    /* Allow vertical overflow for marquee text on mobile */
+    .tape .tape-inner {
+        overflow-y: visible;
+    }
+
+    .tape:nth-of-type(1) {
+        grid-row: 1;
+    }
+
+    #main-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1rem;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 0;
+        display: flex;
+        visibility: visible;
+        opacity: 1;
+        width: calc(100vw - 60px);
+        max-width: calc(100vw - 60px);
+    }
+    
+    /* Only remove padding/gap when postPage is present (individual artwork pages) */
+    #main-content > .postPage {
+        margin: 0;
+    }
+    
+    /* When postPage exists, remove padding from parent */
+    #main-content:has(> .postPage) {
+        gap: 0;
+        padding: 0;
+    }
+
+    .postCard {
+        flex-basis: 100%;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        min-height: 250px;
+        max-height: none;
+        box-sizing: border-box;
+    }
+
+    .postCard:hover,
+    .postCard:focus {
+        transform: scale(1.05);
+    }
+
+    .postTitle {
+        font-size: 1.75rem;
+    }
+
+    .postType {
+        font-size: 1.25rem;
+    }
+
+    .postPageTitle {
+        font-size: 2.5rem;
+        -webkit-text-stroke-width: 1.5px;
+    }
+
+    .postPagePara {
+        font-size: 2rem;
+        padding-left: 10px;
+        padding-right: 10px;
+        line-height: 1.4;
+    }
+
+    .postNav {
+        flex-wrap: wrap;
+    }
+
+    .postNav .postPageTitle {
+        font-size: 2rem;
+    }
+
+    .postPageImg {
+        margin-inline: 1rem;
+        max-width: calc(100vw - 60px - 2rem);
+        width: auto;
+        height: auto;
+        max-height: calc(100vh - 400px);
+        object-fit: contain;
+        box-sizing: border-box;
+    }
+    
+    .postPage {
+        max-width: calc(100vw - 60px);
+        width: calc(100vw - 60px);
+        overflow-x: hidden;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Rotated mobile view - larger images */
+    @media (max-width: 1024px) and (orientation: landscape) {
+        .postPageImg {
+            max-height: calc(100vh - 150px);
+            max-width: calc(100vw - 60px - 2rem);
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+        
+        /* Fix horizontal flip appearance - ensure proper orientation */
+        body {
+            transform: none !important;
+            direction: ltr !important;
+        }
+        
+        main {
+            transform: none !important;
+        }
+        
+        #main-content {
+            transform: none !important;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        
+        /* Remove gap between postcard and left edge */
+        .postCard {
+            margin-left: 0;
+            padding-left: 0;
+        }
+        
+        .postPage {
+            margin-left: 0;
+            padding-left: 0;
+        }
+        
+        /* Scale content to fit better */
+        #main-content {
+            padding: 0.5rem;
+        }
+        
+        /* Fix menu on landscape - ensure it's not cropped and fits properly */
+        aside {
+            height: calc(100vh - 60px) !important;
+            max-height: calc(100vh - 60px) !important;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        
+        aside header {
+            max-height: 120px;
+            flex-shrink: 0;
+        }
+        
+        #navLinks {
+            padding: 0.75rem;
+            font-size: 1.25rem;
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            gap: 0.25rem;
+        }
+        
+        #navLinks > div {
+            padding: 0.25rem;
+            overflow: visible;
+        }
+        
+        #navLinks a {
+            padding: 0.5rem;
+            font-size: clamp(1.2rem, 4vw, 1.75rem);
+            white-space: nowrap;
+            overflow: visible;
+            transform: scaleY(1.5);
+        }
+        
+        #navLinks * {
+            font-size: clamp(1.2rem, 4vw, 1.75rem);
+        }
+        
+        #navLinks .div10 a {
+            font-size: clamp(1rem, 3.5vw, 1.5rem);
+            transform: scaleY(1.5);
+        }
+    }
+
+    .postNav {
+        padding-inline: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    #contact-wrapper {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+        height: auto;
+        overflow-y: auto;
+    }
+
+    #contact-wrapper > .contact-section {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        min-height: auto;
+    }
+
+    #contact-wrapper > .contact-section > .contact-card {
+        max-width: 100%;
+        aspect-ratio: 1 / 1;
+    }
+
+    .aboutMeImg {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+    }
+}
+
+/* Tablet: use mobile view - all styles inherited from max-width: 1024px */
+/* Larger text for tablets within mobile view */
+@media (min-width: 481px) and (max-width: 1024px) {
+    #navLinks * {
+        font-size: 2rem;
+    }
+}
+
+/* Large desktop: 3+ column cards, full sidebar */
+@media (min-width: 1025px) {
+    /* Keep existing desktop styles */
+    .postCard {
+        flex-basis: calc(33.333% - 48.67px);
+    }
+}
+
+/* Extra large screens: optimize spacing */
+@media (min-width: 1440px) {
+    #main-content {
+        gap: 73px;
+        padding-left: 47px;
+        padding-right: 47px;
+    }
+
+    .postCard {
+        flex-basis: calc(33.333% - 73px);
+    }
 }

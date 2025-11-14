@@ -10,32 +10,45 @@
         --initial: the initial position of the scroll, set to a negative number to be on the "left" or "top"
         --end: the final position of the scroll, set to a positive number to be on the "right" or "bottom"
 **/
+/* Top tape: left to right (start of continuous path) */
 .tape:nth-of-type(1) {
     grid-column: 1;
     grid-row: 1;
 
-    --duration: 30s; /** TODO fine-tune **/
-    --initial: -370%; /** TODO fine-tune **/
-    --end: 100%; /** TODO fine-tune **/
+    --duration: 30s;
+    --initial: -370%;
+    --end: 100%;
+    animation-delay: 0s;
 }
 
+/* Bottom tape: right to left (end of continuous path) */
 .tape:nth-of-type(2) {
     grid-column: 1;
     grid-row: 3;
 
-    --duration: 30s; /** TODO fine-tune **/
-    --initial: 100%; /** TODO fine-tune **/
-    --end: -125%; /** TODO fine-tune **/
+    --duration: 30s;
+    --initial: 100%;
+    --end: -150%;
+    /* Start when vertical tape finishes - calculate based on path length */
+    /* Top: 470% distance, Vertical: 200% distance, so bottom starts at ~(470+200)/920 * 30s = ~21.8s */
+    animation-delay: 21.8s;
 }
 
+/* Right vertical tape: top to bottom (connects top to bottom) */
 .tape:nth-of-type(3) {
     grid-column: 2;
     grid-row: 1 / -1;
 
-    --duration: 30s; /** TODO fine-tune **/
-    --initial: -100%; /** TODO fine-tune **/
-    --end: 100%; /** TODO fine-tune **/
+    --duration: 30s;
+    --initial: -100%;
+    --end: 100%;
+    /* Start when top tape finishes - top travels 470% distance out of total path */
+    /* Top: 470% distance, total path ~920%, so vertical starts at ~470/920 * 30s = ~15.3s */
+    animation-delay: 15.3s;
 }
+
+/* Create continuous tickertape path: top (left->right) -> right (top->bottom) -> bottom (right->left) */
+/* Animation delays sync the flow so text appears to travel continuously around the perimeter */
 
 /** Tickertape vertical styling tweaks **/
 /** Change scaleX/scaleY to change the 'kerning' / 'stretch' of the text **/
@@ -48,6 +61,49 @@
 .tape .tape-inner p {
     font-size: calc(100px);
     transform: scaleY(0.7) scaleX(1.48); /** TODO fine-tune **/
+}
+
+/**
+*** RESPONSIVE TAPE ANIMATIONS
+**/
+
+/* Mobile: Smaller tape text with vertical overflow like desktop */
+@media (max-width: 768px) {
+    .tape:not(.vertical) .tape-inner p {
+        font-size: calc(40px);
+        transform: scaleY(1.475) scaleX(0.5);
+    }
+
+    .tape .tape-inner p {
+        font-size: calc(40px);
+        transform: scaleY(0.7) scaleX(1.48);
+    }
+}
+
+/* Mobile: Apply vertical overflow styling to all mobile tape text */
+@media (max-width: 1024px) {
+    .tape:not(.vertical) .tape-inner p {
+        font-size: calc(40px);
+        transform: scaleY(1.475) scaleX(0.5);
+    }
+
+    .tape .tape-inner p {
+        font-size: calc(40px);
+        transform: scaleY(0.7) scaleX(1.48);
+    }
+}
+
+/* Tablet: Medium tape text - but keep vertical overflow styling */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .tape:not(.vertical) .tape-inner p {
+        font-size: calc(60px);
+        transform: scaleY(1.475) scaleX(0.5);
+    }
+
+    .tape .tape-inner p {
+        font-size: calc(60px);
+        transform: scaleY(0.7) scaleX(1.48);
+    }
 }
 
 /** Tickertape boilerplate code **/
@@ -80,6 +136,17 @@
     position: absolute;
     top: 0;
     left: 0;
+}
+
+/* Mobile: Allow vertical overflow for marquee text */
+@media (max-width: 1024px) {
+    .tape-wrapper {
+        overflow-y: visible;
+    }
+    
+    .tape .tape-inner {
+        overflow-y: visible;
+    }
 }
 /*.tape:not(.vertical) .tape-wrapper {*/
 /*    overflow-x: visible;*/
@@ -128,6 +195,19 @@
 
 .tape:not(.side) .tape-inner {
     animation: marquee var(--duration) linear infinite;
+}
+
+/* Apply animation delay from parent tape element for continuous path */
+.tape:nth-of-type(1) .tape-inner {
+    animation-delay: 0s;
+}
+
+.tape:nth-of-type(2) .tape-inner {
+    animation-delay: 21.8s;
+}
+
+.tape:nth-of-type(3) .tape-inner {
+    animation-delay: 15.3s;
 }
 
 .tape.side .tape-inner {
