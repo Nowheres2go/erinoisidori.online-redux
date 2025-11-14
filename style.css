@@ -247,6 +247,9 @@ main {
 
 .div11 {
     grid-area: 5 / 1 / 6 / 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .postCard {
@@ -744,7 +747,7 @@ main {
         border: 10px solid #104626;
         border-top: 0px;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(4, 1fr);
+        grid-template-rows: repeat(5, 1fr);
         min-height: auto;
         padding: 1rem;
         box-sizing: border-box;
@@ -793,6 +796,12 @@ main {
         transform: scaleY(1.5);
     }
 
+    /* Style SHOP link same as HOME */
+    #navLinks .div11 a {
+        font-size: clamp(1.3rem, 4.5vw, 1.75rem);
+        transform: scaleY(1.5);
+    }
+
     #navLinks * {
         font-size: clamp(1.5rem, 5vw, 2rem);
     }
@@ -836,6 +845,13 @@ main {
 
     .div10 {
         grid-area: 4 / 1 / 5 / 4;
+    }
+
+    .div11 {
+        grid-area: 5 / 1 / 6 / 4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     main {
@@ -1147,6 +1163,12 @@ main {
         }
         
         #navLinks .div10 a {
+            font-size: clamp(1rem, 3.5vw, 1.5rem);
+            transform: scaleY(1.5);
+        }
+
+        /* Style SHOP link same as HOME in landscape */
+        #navLinks .div11 a {
             font-size: clamp(1rem, 3.5vw, 1.5rem);
             transform: scaleY(1.5);
         }
