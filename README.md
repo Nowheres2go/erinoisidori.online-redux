@@ -23,6 +23,69 @@
 
 ## Development & Testing
 
-### Serve the Website Locally
+### Prerequisites
+- Node.js (v14 or higher)
+- npm
 
-To serve the website locally, ensure python 3 is installed and run `./serve.sh`.
+### Install Dependencies
+```bash
+npm install
+```
+
+### Build the Site
+```bash
+npm run build
+```
+This generates the static site in the `_site` directory.
+
+### Serve Locally with Auto-reload
+```bash
+npm run serve
+```
+This starts a local development server with auto-reload on file changes.
+
+### Development Mode
+```bash
+npm run dev
+```
+Same as `serve` but with watch mode enabled.
+
+## Adding New Content
+
+### Adding a New Artwork
+1. Create a new Markdown file in `content/works/` (e.g., `my-new-artwork.md`)
+2. Add frontmatter:
+   ```markdown
+   ---
+   layout: work-page.njk
+   title: My New Artwork
+   date: 24/12/15
+   image: /works/ArtworkImages/myartwork.png
+   permalink: /works/my-new-artwork.html
+   activePage: work
+   ---
+   
+   Description of your artwork here...
+   ```
+3. Add your image to `works/ArtworkImages/`
+4. Run `npm run build` or `npm run serve`
+
+### Adding a New Blog Post
+1. Create a new Markdown file in `content/blogs/` (e.g., `my-new-post.md`)
+2. Add frontmatter:
+   ```markdown
+   ---
+   layout: blog-page.njk
+   title: My New Blog Post
+   date: 24/12/15
+   image: /blogs/blogimages/myimage.jpg
+   permalink: /blogs/my-new-post.html
+   activePage: blog
+   ---
+   
+   Your blog post content here...
+   ```
+3. Add your image to `blogs/blogimages/`
+4. Run `npm run build` or `npm run serve`
+
+The previous/next navigation is automatically generated based on the date field!

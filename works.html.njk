@@ -1,0 +1,18 @@
+---
+layout: base.njk
+title: Works
+activePage: work
+permalink: /works/
+pagination:
+  data: collections.works
+  size: 100
+---
+
+{% for work in collections.works %}
+<a href="{{ work.url }}" class="postCard">
+    <div class="postTitleContain"><p class="postTitle">{{ work.data.title }}</p></div>
+    <div class="postTypeContain"><p class="postType">{{ work.data.dateDisplay or work.data.date }}</p></div>
+    <img class="indeximg" src="{{ work.data.image }}" loading="lazy" decoding="async">
+</a>
+{% endfor %}
+

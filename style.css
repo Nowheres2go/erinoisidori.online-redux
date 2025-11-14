@@ -134,7 +134,7 @@ main {
     gap: 73px;
     padding-left: 47px;
     padding-right: 47px;
-    padding-top: 28px;
+    padding-top: 28px; /* Restored gap at top for navigation pages */
     padding-bottom: 28px;
     justify-content: center;
 }
@@ -153,7 +153,7 @@ main {
     border-top: 0px;
     display: grid;
     grid-template-columns: 1fr min-content 1fr;
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     width: 100%; /* bruh */
@@ -243,6 +243,10 @@ main {
 
 .div10 {
     grid-area: 4 / 1 / 5 / 4;
+}
+
+.div11 {
+    grid-area: 5 / 1 / 6 / 4;
 }
 
 .postCard {
@@ -412,7 +416,8 @@ main {
     text-decoration: none !important;
 }
 
-.contact-card img {
+.contact-card img,
+.contact-card .contact-icon {
     flex: 1 1;
     width: 100%;
     height: 100%;
@@ -452,22 +457,53 @@ main {
     font-weight: bold;
     font-style: italic;
     color: #FCBE11;
-    font-size: 3.125rem;
+    font-size: 2.5rem; /* Reduced from 3.125rem */
     padding-left: 20px;
     padding-right: 20px;
     text-align: center;
     border-top: #104626 solid 2.5px;
-    border-bottom: #104626 solid 2.5px;
+    border-bottom: none; /* Removed bottom border */
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #104626;
     width: 100%;
     line-height: 1.4;
+    white-space: pre-line; /* Preserve line breaks from markdown */
+}
+
+/* Style paragraphs inside postPagePara div (from markdown) */
+.postPagePara p {
+    font-family: "Times New Roman";
+    font-weight: bold;
+    font-style: italic;
+    color: #FCBE11;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #104626;
+    margin: 0;
+    padding: 0;
+}
+
+/* Buy link styling */
+.buy-link {
+    color: #FCBE11 !important;
+    text-decoration: underline !important;
+    font-family: "Times New Roman" !important;
+    font-weight: bold !important;
+    font-style: italic !important;
+    font-size: inherit !important;
+    -webkit-text-stroke-width: 0.75px !important;
+    -webkit-text-stroke-color: #104626 !important;
+    transition: color 0.2s ease-in !important;
+}
+
+.buy-link:hover {
+    color: #104626 !important;
+    text-decoration: underline !important;
 }
 
 /* Desktop: ensure proper sizing */
 @media (min-width: 769px) {
     .postPagePara {
-        font-size: 3.125rem;
+        font-size: 2.5rem; /* Reduced from 3.125rem */
     }
 }
 
@@ -485,6 +521,12 @@ main {
     margin-inline: auto;
     object-position: center !important;
     padding: 0;
+    cursor: zoom-in;
+    transition: transform 0.2s ease;
+}
+
+.postPageImg:hover {
+    transform: scale(1.02);
 }
 
 /* Desktop: ensure border wraps properly and handle wide images - scale down, don't crop */
@@ -541,7 +583,7 @@ main {
         max-width: calc(100vw - 33% - 120px) !important;
         width: auto !important;
         height: auto !important;
-    }
+}
     
 }
 
@@ -702,16 +744,15 @@ main {
         border: 10px solid #104626;
         border-top: 0px;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 1fr);
         min-height: auto;
         padding: 1rem;
         box-sizing: border-box;
         width: 100%;
         overflow-x: hidden;
         overflow-y: hidden;
-        display: grid;
-        gap: 0.5rem;
     }
+    
     
     /* Ensure all grid items are centered and don't crop text */
     #navLinks > div {
@@ -807,7 +848,7 @@ main {
         margin-left: 0;
         margin-right: 60px;
         overflow-x: hidden;
-        overflow-y: auto;
+        overflow-y: visible; /* Allow vertical overflow for marquee like desktop */
         background-color: #d9d9d9;
         position: relative;
     }
@@ -818,7 +859,7 @@ main {
         width: 100%;
         max-width: calc(100vw - 60px);
         overflow-x: hidden;
-        overflow-y: auto;
+        overflow-y: visible; /* Content flows naturally, body handles scrolling */
         padding-right: 0;
         position: relative;
         z-index: 0;
@@ -828,6 +869,7 @@ main {
         width: 100%;
         max-width: calc(100vw - 60px);
         overflow-x: hidden;
+        overflow-y: visible; /* Content flows naturally, body handles scrolling */
         box-sizing: border-box;
         position: relative;
         z-index: 0;
@@ -956,7 +998,7 @@ main {
     }
 
     .postPagePara {
-        font-size: 2rem;
+        font-size: 1.5rem; /* Reduced from 2rem */
         padding-left: 10px;
         padding-right: 10px;
         line-height: 1.4;
@@ -984,9 +1026,43 @@ main {
         max-width: calc(100vw - 60px);
         width: calc(100vw - 60px);
         overflow-x: hidden;
+        overflow-y: visible;
         box-sizing: border-box;
         margin: 0;
         padding: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    
+    /* Ensure proper scrolling on mobile - content scrolls, marquee overflows */
+    #main-content {
+        overflow-x: hidden !important;
+        overflow-y: visible !important;
+        padding-bottom: 20px;
+    }
+    
+    #main-wrapper {
+        overflow-x: hidden !important;
+        overflow-y: visible !important;
+    }
+    
+    /* Ensure body and html allow scrolling on mobile */
+    body {
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+    }
+    
+    html {
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+    }
+    
+    /* PostPage should not overflow */
+    .postPage {
+        overflow-x: hidden !important;
+        overflow-y: visible !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     /* Rotated mobile view - larger images */
@@ -1074,6 +1150,7 @@ main {
             font-size: clamp(1rem, 3.5vw, 1.5rem);
             transform: scaleY(1.5);
         }
+        
     }
 
     .postNav {
@@ -1113,6 +1190,42 @@ main {
 @media (min-width: 481px) and (max-width: 1024px) {
     #navLinks * {
         font-size: 2rem;
+    }
+}
+
+/* Shop page iframe styling */
+.shop-iframe-container {
+    width: 100%;
+    margin: 2rem 0;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.shop-iframe {
+    border: 5px solid #104626;
+    box-sizing: border-box;
+    min-height: 600px;
+    width: 100%;
+    display: block;
+}
+
+/* Mobile responsive iframe */
+@media (max-width: 1024px) {
+    .shop-iframe-container {
+        padding: 0 10px;
+        margin: 1rem 0;
+    }
+    
+    .shop-iframe {
+        min-height: 500px;
+        height: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .shop-iframe {
+        min-height: 400px;
+        height: 500px;
     }
 }
 

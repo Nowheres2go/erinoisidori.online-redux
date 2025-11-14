@@ -1,0 +1,11 @@
+---
+layout: work-page.njk
+title: Underwater
+date: 2024-05-05
+dateDisplay: 24/05/05
+image: /works/ArtworkImages/underwater.png
+permalink: /works/underwater/
+activePage: work
+---
+
+A very quick therapeutic piece of art. I did this out of a classic avoidance of working on this site haha. This is of Nina from the movie black swan when she's submerged in the bathtub or something. I honestly don't have too much to say other than I should start working on smaller and quicker pieces there's a rawer quality to them that I seldom produce. Thanks for checkin this out!

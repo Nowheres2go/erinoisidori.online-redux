@@ -1,0 +1,18 @@
+---
+layout: work-page.njk
+title: Shower Crab
+date: 2023-05-08
+dateDisplay: 23/05/08
+image: /works/ArtworkImages/ShowerCrab.png
+permalink: /works/showercrabart/
+activePage: work
+---
+
+This is a rendition of a tweet I saw from this guy who reviews food while
+eating in the shower. This one was a lot of fun, though in hindsight, I feel as if I went a little
+overboard with the detailing of it. (Upon showing it to the original tweeter it took him a couple of
+months to realize it wasn't just a filter on his photo) This remains largely the only piece of mine
+I've willingly posted to social media. (due to where I got the source material from) What really
+drew me in about doing this is a) I'm an absolute sucker for bathroom tile b) The surreal nature of
+the post and c) I have this weird phobia of crustaceans, so this was a form of exposure therapy. The
+origional tweet is linked [here](/https://twitter.com/gazpachomachine/status/1654138930894102528)

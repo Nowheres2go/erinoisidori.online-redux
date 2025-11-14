@@ -1,0 +1,11 @@
+---
+layout: blog-page.njk
+title: Printing my Artwork!
+date: 2024-04-16
+dateDisplay: 24/04/16
+image: /blogs/blogimages/artprint.jpg
+permalink: /blogs/printingmyworkblogpost/
+activePage: blog
+---
+
+As the end of my time at George Brown comes to a close (It's final's week.) I decided that I would use a bit of my tax return money to get one of my art pieces printed! (Things are quite tight fiscally at the moment my bank called me yesterday to ask for help cleaning out the cobwebs in my chequing account.) I decided to do this as a little reward to myself and because I've been having a hard time feeling proud or accomplished of my work. I figured getting something tangible like this done would help fix that (it really did.) I ended up going through this franchise The Printing House, which was surprisingly simple. I gave them a call earlier in the morning, they told me what they required from me. (a PDF of what I wanted printed with some bleed to it) and they gave me a quote and a time of pickup pretty quickly. Shortly after, I finished up my second last exam and headed to therapy. The plan was to hit the place on my way back home. The location was at brookfield place somewhere I hadn't been to yet, and upon arrival I was shocked at how bougie it was, I felt pretty out of place. It turns out the employee who had helped me out was also a fan of Buffalo 66' which made the experience even sweeter. After successfully retrieving the print, I hopped on the subway from Union and waited 20 minutes in the hot spring sun at Queens park for a streetcar that upon arrival was too packed to even board. Despite this, I was unbothered and simply ecstatic and decided to walk all the way back to my apartment. Once I got back, my roommates helped me hang it up and the living room. Everytime I pass it, I feel proud of what I've done (although it's a bit crooked.) Thanks for readin. If you want to see a higher quality photo of the painting and read a little more about what I say about the piece that can be found [here!](/works/distantbuffalo66art/)

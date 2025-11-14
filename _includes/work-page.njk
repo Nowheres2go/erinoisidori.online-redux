@@ -1,0 +1,37 @@
+---
+layout: base.njk
+---
+
+{% set previous = collections.works | getPreviousInCollection(page.url) %}
+{% set next = collections.works | getNextInCollection(page.url) %}
+
+<div class="postPage">
+    <nav class="postTitleContain postNav">
+        {% if previous %}
+        <a class="previous navArrow postPageTitle" href="{{ previous.url }}">◅</a>
+        {% else %}
+        <span class="previous navArrow postPageTitle" style="visibility: hidden;">◅</span>
+        {% endif %}
+        <h1 class="title postPageTitle">{{ title }}</h1>
+        {% if next %}
+        <a class="next navArrow postPageTitle" href="{{ next.url }}">▻</a>
+        {% else %}
+        <span class="next navArrow postPageTitle" style="visibility: hidden;">▻</span>
+        {% endif %}
+    </nav>
+    <div><p class="postPagePara">{{ dateDisplay or date }}</p></div>
+    {% if images %}
+        {% for img in images %}
+        <img class="postPageImg" src="{{ img }}">
+        {% endfor %}
+    {% else %}
+        <img class="postPageImg" src="{{ image }}">
+    {% endif %}
+    <div class="postPagePara">{{ content | safe }}</div>
+    {% if productUrl %}
+    <div class="postPagePara">
+        <p><a href="{{ productUrl }}" target="_blank" class="buy-link">BUY PRINT →</a></p>
+    </div>
+    {% endif %}
+</div>
+

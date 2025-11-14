@@ -67,29 +67,29 @@
 *** RESPONSIVE TAPE ANIMATIONS
 **/
 
-/* Mobile: Smaller tape text with vertical overflow like desktop */
+/* Mobile: Smaller tape text with vertical overflow like desktop - increased stretch to match desktop */
 @media (max-width: 768px) {
     .tape:not(.vertical) .tape-inner p {
         font-size: calc(40px);
-        transform: scaleY(1.475) scaleX(0.5);
+        transform: scaleY(2.2) scaleX(0.5); /* Increased to 2.2 to reach flush with top and bottom borders */
     }
 
-    .tape .tape-inner p {
+    .tape.vertical .tape-inner p {
         font-size: calc(40px);
-        transform: scaleY(0.7) scaleX(1.48);
+        transform: scaleY(0.7) scaleX(2.2); /* Increased to 2.2 to reach flush with top and bottom borders */
     }
 }
 
-/* Mobile: Apply vertical overflow styling to all mobile tape text */
+/* Mobile: Apply vertical overflow styling to all mobile tape text - increased stretch to match desktop */
 @media (max-width: 1024px) {
     .tape:not(.vertical) .tape-inner p {
         font-size: calc(40px);
-        transform: scaleY(1.475) scaleX(0.5);
+        transform: scaleY(2.2) scaleX(0.5); /* Increased to 2.2 to reach flush with top and bottom borders */
     }
 
-    .tape .tape-inner p {
+    .tape.vertical .tape-inner p {
         font-size: calc(40px);
-        transform: scaleY(0.7) scaleX(1.48);
+        transform: scaleY(0.7) scaleX(2.2); /* Increased to 2.2 to reach flush with top and bottom borders */
     }
 }
 

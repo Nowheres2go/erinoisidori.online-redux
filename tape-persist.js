@@ -1,40 +1,54 @@
-// Persist marquee animation state across page loads
+// Persist marquee animation state across page loads - global state for all pages
+// Ensures continuous path (top -> right -> bottom) and prevents animations from getting stuck
 (function() {
     // Get all tape elements
     const tapes = document.querySelectorAll('.tape');
     
     if (tapes.length === 0) return;
     
-    // Create a unique key for this page
-    const pageKey = window.location.pathname;
-    const storageKey = `marquee-state-${pageKey}`;
+    // Use a global key so state persists across all pages
+    const storageKey = 'marquee-global-state';
+    const duration = 30000; // 30 seconds
     
-    // Function to get animation progress
-    function getAnimationProgress(element) {
+    // Base delays for continuous path (from CSS)
+    const baseDelays = [0, 21800, 15300]; // Top: 0s, Bottom: 21.8s, Vertical: 15.3s
+    
+    // Function to get the actual position in the continuous path
+    function getContinuousPathPosition(element, tapeIndex) {
         const animations = element.getAnimations ? element.getAnimations() : [];
         const animation = animations.length > 0 ? animations[0] : null;
         if (!animation) return null;
         
         const currentTime = animation.currentTime || 0;
-        const duration = animation.effect ? animation.effect.getTiming().duration : 30000;
-        return currentTime % duration;
+        const baseDelay = baseDelays[tapeIndex] || 0;
+        
+        // Calculate position in the continuous path (0 to duration)
+        // Add base delay to get the actual position in the continuous loop
+        const pathPosition = (currentTime + baseDelay) % duration;
+        return pathPosition;
     }
     
-    // Function to set animation progress using animation-delay
-    function setAnimationProgress(element, progress) {
-        if (progress === null || progress === undefined) return;
+    // Function to set animation to a specific position in the continuous path
+    function setContinuousPathPosition(element, pathPosition, tapeIndex) {
+        if (pathPosition === null || pathPosition === undefined) return;
         
-        // Use negative animation-delay to start animation at specific point
-        // Duration is 30s (30000ms) based on CSS
-        const duration = 30000;
-        const delay = -(progress % duration) / 1000; // Convert to seconds, make negative
+        const baseDelay = baseDelays[tapeIndex] || 0;
         
-        // Remove any existing animation, then reapply with delay
+        // Calculate where this animation should be to match the path position
+        // pathPosition = (animationTime + baseDelay) % duration
+        // So: animationTime = (pathPosition - baseDelay + duration) % duration
+        let animationTime = (pathPosition - baseDelay + duration) % duration;
+        
+        // Convert to negative delay to start animation at this point
+        const delay = -(animationTime / 1000);
+        
+        // Get animation properties from CSS
         const animationName = getComputedStyle(element).animationName;
         const animationDuration = getComputedStyle(element).animationDuration || '30s';
         const animationTiming = getComputedStyle(element).animationTimingFunction || 'linear';
         const animationIteration = getComputedStyle(element).animationIterationCount || 'infinite';
         
+        // Remove and reapply animation with the calculated delay
         element.style.animation = 'none';
         element.offsetHeight; // Force reflow
         element.style.animation = `${animationName} ${animationDuration} ${animationTiming} ${delay}s ${animationIteration}`;
@@ -43,17 +57,20 @@
     // Save state periodically and before page unload
     function saveStates() {
         const states = {};
+        let hasValidState = false;
+        
         tapes.forEach((tape, index) => {
             const inner = tape.querySelector('.tape-inner');
             if (inner) {
-                const progress = getAnimationProgress(inner);
-                if (progress !== null) {
-                    states[index] = progress;
+                const pathPosition = getContinuousPathPosition(inner, index);
+                if (pathPosition !== null) {
+                    states[index] = pathPosition;
+                    hasValidState = true;
                 }
             }
         });
         
-        if (Object.keys(states).length > 0) {
+        if (hasValidState) {
             try {
                 sessionStorage.setItem(storageKey, JSON.stringify(states));
             } catch (e) {
@@ -62,11 +79,18 @@
         }
     }
     
-    // Save state every 2 seconds
-    setInterval(saveStates, 2000);
+    // Save state every 1 second for better accuracy
+    setInterval(saveStates, 1000);
     
     // Save state before page unload
     window.addEventListener('beforeunload', saveStates);
+    
+    // Also save on visibility change (when user switches tabs)
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            saveStates();
+        }
+    });
     
     // Restore state on page load
     function restoreStates() {
@@ -77,31 +101,29 @@
                 
                 // Wait for animations to initialize - try multiple times
                 let attempts = 0;
-                const maxAttempts = 15;
+                const maxAttempts = 25;
                 
                 function tryRestore() {
                     attempts++;
                     let allReady = true;
+                    let anyRestored = false;
                     
                     tapes.forEach((tape, index) => {
                         if (states[index] !== undefined) {
                             const inner = tape.querySelector('.tape-inner');
                             if (inner) {
-                                // Try to get animation
-                                let animation = null;
-                                try {
-                                    const animations = inner.getAnimations ? inner.getAnimations() : [];
-                                    animation = animations.length > 0 ? animations[0] : null;
-                                } catch (e) {
-                                    // Fallback: check computed style
-                                    const animName = getComputedStyle(inner).animationName;
-                                    if (animName && animName !== 'none') {
-                                        animation = { effect: { getTiming: () => ({ duration: 30000 }) } };
-                                    }
-                                }
+                                // Check if animation exists
+                                const animations = inner.getAnimations ? inner.getAnimations() : [];
+                                const hasAnimation = animations.length > 0;
                                 
-                                if (animation) {
-                                    setAnimationProgress(inner, states[index]);
+                                // Also check computed style as fallback
+                                const animName = getComputedStyle(inner).animationName;
+                                const styleHasAnimation = animName && animName !== 'none';
+                                
+                                if (hasAnimation || styleHasAnimation || attempts >= 8) {
+                                    // Restore the position in the continuous path
+                                    setContinuousPathPosition(inner, states[index], index);
+                                    anyRestored = true;
                                 } else if (attempts < maxAttempts) {
                                     allReady = false;
                                 }
@@ -109,13 +131,14 @@
                         }
                     });
                     
-                    if (!allReady && attempts < maxAttempts) {
-                        setTimeout(tryRestore, 200);
+                    // If we restored at least one, we're good
+                    if (!allReady && attempts < maxAttempts && !anyRestored) {
+                        setTimeout(tryRestore, 150);
                     }
                 }
                 
                 // Start trying after animations have a chance to initialize
-                setTimeout(tryRestore, 500);
+                setTimeout(tryRestore, 200);
             }
         } catch (e) {
             // Couldn't restore state
@@ -131,9 +154,10 @@
     }
     
     window.addEventListener('load', function() {
-        setTimeout(restoreStates, 100);
+        setTimeout(restoreStates, 50);
     });
     
-    // Also try after a delay to catch late-loading animations
-    setTimeout(restoreStates, 1000);
+    // Also try after delays to catch late-loading animations
+    setTimeout(restoreStates, 500);
+    setTimeout(restoreStates, 1500);
 })();

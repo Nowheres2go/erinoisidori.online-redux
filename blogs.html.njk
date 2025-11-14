@@ -1,0 +1,18 @@
+---
+layout: base.njk
+title: Blog
+activePage: blog
+permalink: /blogs/
+pagination:
+  data: collections.blogs
+  size: 100
+---
+
+{% for blog in collections.blogs %}
+<a href="{{ blog.url }}" class="postCard">
+    <div class="postTitleContain"><p class="postTitle">{{ blog.data.title }}</p></div>
+    <div class="postTypeContain"><p class="postType">{{ blog.data.dateDisplay or blog.data.date }}</p></div>
+    <img class="indeximg" src="{{ blog.data.image }}" loading="lazy" decoding="async">
+</a>
+{% endfor %}
+

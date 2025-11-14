@@ -1,0 +1,11 @@
+---
+layout: blog-page.njk
+title: Clothing Design
+date: 2024-04-15
+dateDisplay: 24/04/15
+image: /blogs/blogimages/tshirt.png
+permalink: /blogs/designblogpost/
+activePage: blog
+---
+
+I've been trying my hand with designing clothing, or I guess you could say at best graphic tees. It's an Idea I've always flirted with primarily due to most of my clothing consists of buttons or band tees. I know the image here Isn't great, but It's been quite fun doing mockups and stuff. I don't have too much else to say, so thanks for reading!

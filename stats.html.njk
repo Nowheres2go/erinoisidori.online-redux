@@ -1,0 +1,45 @@
+---
+layout: base.njk
+title: Site Stats
+activePage: stats
+permalink: /stats/
+---
+
+{% set sortedWorks = collections.works | sortByDate %}
+{% set sortedBlogs = collections.blogs | sortByDate %}
+{% set allPosts = collections.works | concat(collections.blogs) %}
+
+<div class="postPage">
+    <div class="postTitleContain"><p class="postPageTitle">SITE STATISTICS</p></div>
+    <div class="postPagePara">
+        <p><strong>TOTAL ARTWORKS:</strong> {{ collections.works.length }}</p>
+        <p><strong>TOTAL BLOG POSTS:</strong> {{ collections.blogs.length }}</p>
+        <p><strong>TOTAL CONTENT:</strong> {{ allPosts.length }}</p>
+        <p><strong>LAST BUILD:</strong> BUILD TIME</p>
+        {% if sortedWorks.length > 0 %}
+        {% set oldestWork = sortedWorks | last %}
+        {% set newestWork = sortedWorks | first %}
+        <p><strong>OLDEST ARTWORK:</strong> {{ oldestWork.data.dateDisplay or oldestWork.data.date }}</p>
+        <p><strong>NEWEST ARTWORK:</strong> {{ newestWork.data.dateDisplay or newestWork.data.date }}</p>
+        {% endif %}
+    </div>
+    <div class="postTitleContain"><p class="postPageTitle">MOST RECENT</p></div>
+    <div class="postPagePara">
+        {% if sortedWorks.length > 0 %}
+        {% set latestWork = sortedWorks | first %}
+        <p><strong>LATEST ARTWORK:</strong> {{ latestWork.data.title }}</p>
+        {% endif %}
+        {% if sortedBlogs.length > 0 %}
+        {% set latestBlog = sortedBlogs | first %}
+        <p><strong>LATEST BLOG POST:</strong> {{ latestBlog.data.title }}</p>
+        {% endif %}
+    </div>
+    <div class="postTitleContain"><p class="postPageTitle">META INFORMATION</p></div>
+    <div class="postPagePara">
+        <p><strong>BUILD SYSTEM:</strong> Eleventy (11ty)</p>
+        <p><strong>TEMPLATE ENGINE:</strong> Nunjucks</p>
+        <p><strong>CONTENT FORMAT:</strong> Markdown</p>
+        <p><strong>STYLING:</strong> Raw CSS</p>
+        <p><strong>DESIGN PHILOSOPHY:</strong> Brutalist</p>
+    </div>
+</div>

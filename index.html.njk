@@ -1,0 +1,17 @@
+---
+layout: base.njk
+title: Home
+activePage: home
+permalink: /
+---
+
+{% set allPosts = collections.works | concat(collections.blogs) | sortByDate %}
+
+{% for post in allPosts | limit(9) %}
+<a href="{{ post.url }}" class="postCard">
+    <div class="postTitleContain"><p class="postTitle">{{ post.data.title }}</p></div>
+    <div class="postTypeContain"><p class="postType">{% if 'ArtworkImages' in post.data.image %}Artwork{% else %}Blog{% endif %}</p></div>
+    <img class="indeximg" src="{{ post.data.image }}" loading="lazy" decoding="async">
+</a>
+{% endfor %}
+
