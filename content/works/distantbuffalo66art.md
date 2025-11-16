@@ -6,6 +6,7 @@ dateDisplay: 24/03/25
 image: /works/ArtworkImages/buffalo66tub.png
 permalink: /works/distantbuffalo66art/
 activePage: work
+productUrl: https://erinoisidorionline.bigcartel.com/product/buffalo-66-tub
 ---
 
 A continuation of a recent kick I've had of painting stills from movies I

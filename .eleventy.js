@@ -17,7 +17,15 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("keyboard-nav.js");
   eleventyConfig.addPassthroughCopy("grid-overlay.js");
   eleventyConfig.addPassthroughCopy("image-modal.js");
+  // Interactive features
+  eleventyConfig.addPassthroughCopy("custom-cursor.js");
+  eleventyConfig.addPassthroughCopy("gradient-background.js");
+  eleventyConfig.addPassthroughCopy("particle-background.js");
+  eleventyConfig.addPassthroughCopy("three-card-tilt.js");
+  eleventyConfig.addPassthroughCopy("three-logo-animation.js");
+  eleventyConfig.addPassthroughCopy("cursor.cur");
   eleventyConfig.addPassthroughCopy("erino.svg");
+  eleventyConfig.addPassthroughCopy("erinoisidorionlineicon.gif");
   eleventyConfig.addPassthroughCopy("works/ArtworkImages");
   eleventyConfig.addPassthroughCopy("blogs/blogimages");
   eleventyConfig.addPassthroughCopy("pageassets");
