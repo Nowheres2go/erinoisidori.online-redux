@@ -8,8 +8,8 @@
     <link href="/style.css" rel="stylesheet">
     <link href="/styles/tape.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Three.js CDN for 3D logo animation -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <!-- Three.js CDN for 3D logo animation - load on all pages -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
 </head>
 <body>
     <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
@@ -18,7 +18,7 @@
         <span></span>
     </button>
 <aside>
-    <header id="erinotitle"><img {% if page.url == "/" %}id="erinoLogo"{% endif %} src="/erino.svg"></header>
+    <header id="erinotitle"><img src="/erino.svg"></header>
     <nav id="navLinks">
         <div class='div1'><a class="postTitle {% if activePage == 'about' %}activeLink{% endif %}" href="/aboutme/">ABOUT</a></div>
         <div class='div2'></div>
@@ -78,18 +78,23 @@
 </main>
 {% set allPosts = collections.works | concat(collections.blogs) %}
 <script id="all-posts-data" type="application/json" data-posts="{{ allPosts | map('url') | tojson }}"></script>
-<!-- Interactive features - Load after Three.js -->
-<script src="/custom-cursor.js"></script>
-<script src="/gradient-background.js"></script>
-<script src="/particle-background.js"></script>
-<script src="/three-card-tilt.js"></script>
-<script src="/three-logo-animation.js"></script>
-<!-- Original scripts -->
-<script src="/menu.js"></script>
-<script src="/tape-persist.js"></script>
-<script src="/grid-overlay.js"></script>
-<script src="/keyboard-nav.js"></script>
-<script src="/image-modal.js"></script>
+<!-- Core scripts - always loaded -->
+<script src="/menu.js" defer></script>
+<script src="/keyboard-nav.js" defer></script>
+<script src="/custom-cursor.js" defer></script>
+<!-- 3D logo animation - works on all pages -->
+<script src="/three-logo-animation.js" defer></script>
+<!-- Card tilt - works on all pages with cards (doesn't need Three.js) -->
+<script src="/three-card-tilt.js" defer></script>
+<!-- Interactive features - only on homepage for performance -->
+{% if page.url == "/" %}
+<script src="/gradient-background.js" defer></script>
+<script src="/particle-background.js" defer></script>
+{% endif %}
+<!-- Page-specific scripts -->
+<script src="/tape-persist.js" defer></script>
+<script src="/grid-overlay.js" defer></script>
+<script src="/image-modal.js" defer></script>
 </body>
 </html>
 

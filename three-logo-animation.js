@@ -13,14 +13,24 @@ class Logo3D {
         this.isActive = false;
         
         // Wait for both Three.js and DOM to be ready
-        const initialize = () => {
+        // Since Three.js loads with defer, we need to wait for it properly
+        const tryInit = () => {
+            // Check if the logo element exists (erinotitle exists on all pages)
+            const titleHeader = document.querySelector('#erinotitle');
+            
+            if (!titleHeader) {
+                // Logo header doesn't exist, element not ready yet
+                return;
+            }
+            
+            // Check if Three.js is loaded
             if (typeof window.THREE === 'undefined') {
-                // Check if script is loading
+                // Check if script is loading (Three.js with defer)
                 const checkThree = setInterval(() => {
                     if (typeof window.THREE !== 'undefined') {
                         clearInterval(checkThree);
-                        // Small delay to ensure DOM is ready
-                        setTimeout(() => this.init(), 100);
+                        // Small delay to ensure everything is ready
+                        setTimeout(() => this.init(), 150);
                     }
                 }, 50);
                 // Timeout after 5 seconds
@@ -31,32 +41,43 @@ class Logo3D {
                     }
                 }, 5000);
             } else {
-                // DOM might not be ready, wait a bit
-                setTimeout(() => this.init(), 100);
+                // Three.js is loaded, initialize after small delay
+                setTimeout(() => this.init(), 150);
             }
         };
         
-        // Wait for DOM to be ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initialize);
+        // Wait for window load event to ensure deferred scripts are loaded
+        if (document.readyState === 'complete') {
+            // Page fully loaded, try init immediately
+            tryInit();
         } else {
-            initialize();
+            // Wait for window load event (fires after all deferred scripts load)
+            window.addEventListener('load', () => {
+                setTimeout(tryInit, 100);
+            }, { once: true });
+            // Also try after DOMContentLoaded in case Three.js loads earlier
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => {
+                    setTimeout(tryInit, 200);
+                }, { once: true });
+            } else {
+                setTimeout(tryInit, 200);
+            }
         }
     }
 
     init() {
-        // Find the logo container (erinoLogo or erinotitle)
-        const logoImg = document.querySelector('#erinoLogo');
+        // Find the logo container (erinotitle exists on all pages)
         const titleHeader = document.querySelector('#erinotitle');
         
-        if (!logoImg && !titleHeader) return;
+        if (!titleHeader) return;
         
         // Use the header as container
-        this.container = titleHeader || logoImg?.parentElement;
+        this.container = titleHeader;
         if (!this.container) return;
 
         // Store original logo for fallback
-        const originalLogo = logoImg || titleHeader.querySelector('img');
+        const originalLogo = titleHeader.querySelector('img');
         if (!originalLogo) return;
 
         // Get container dimensions
@@ -223,6 +244,11 @@ class Logo3D {
                 this.logoMesh.add(plane);
                 this.scene.add(this.logoMesh);
                 
+                // Ensure animation is running now that mesh is loaded
+                if (!this.isActive && this.renderer && this.scene && this.camera) {
+                    this.start();
+                }
+                
                 // Render immediately after creation
                 if (this.renderer && this.scene && this.camera) {
                     this.renderer.render(this.scene, this.camera);
@@ -277,7 +303,10 @@ class Logo3D {
     }
 
     animate() {
-        if (!this.isActive || !this.logoMesh) return;
+        if (!this.isActive || !this.renderer || !this.scene || !this.camera) {
+            this.stop();
+            return;
+        }
 
         // Slow horizontal rotation - only rotate the logo, not the red dot
         if (this.logoMesh) {
@@ -297,19 +326,18 @@ class Logo3D {
                 }
             });
         }
+        // Continue rendering even if logo mesh isn't loaded yet (it will appear once loaded)
 
-        if (this.renderer && this.scene && this.camera) {
-            this.renderer.render(this.scene, this.camera);
-        }
-
+        this.renderer.render(this.scene, this.camera);
         this.animationId = requestAnimationFrame(() => this.animate());
     }
 }
 
-// Initialize when DOM is ready
+// Initialize automatically when script loads
+// Wait for DOM and ensure Three.js is loaded
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        // Small delay to ensure logo is rendered
+        // Wait a bit more for deferred scripts to load
         setTimeout(() => {
             try {
                 new Logo3D();
@@ -319,12 +347,27 @@ if (document.readyState === 'loading') {
         }, 100);
     });
 } else {
-    setTimeout(() => {
-        try {
-            new Logo3D();
-        } catch (error) {
-            console.warn('3D Logo initialization failed:', error);
-        }
-    }, 100);
+    // DOM already loaded, wait for window.load to ensure deferred scripts are ready
+    if (document.readyState === 'complete') {
+        // Everything is loaded, initialize
+        setTimeout(() => {
+            try {
+                new Logo3D();
+            } catch (error) {
+                console.warn('3D Logo initialization failed:', error);
+            }
+        }, 100);
+    } else {
+        // Wait for window load event
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                try {
+                    new Logo3D();
+                } catch (error) {
+                    console.warn('3D Logo initialization failed:', error);
+                }
+            }, 200);
+        }, { once: true });
+    }
 }
 

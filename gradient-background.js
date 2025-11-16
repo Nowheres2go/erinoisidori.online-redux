@@ -9,6 +9,7 @@ class GradientBackground {
         this.animationId = null;
         this.isActive = false;
         this.time = 0;
+        this.initialized = false;
         
         // Brutalist color palette
         this.colors = {
@@ -18,10 +19,32 @@ class GradientBackground {
             darkBeige: '#d9d9d9'
         };
         
-        this.init();
+        // Lazy initialization - wait for browser to be idle
+        this.lazyInit();
+    }
+    
+    lazyInit() {
+        // Use requestIdleCallback if available, otherwise use setTimeout with small delay
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => {
+                if (!this.initialized) {
+                    this.init();
+                }
+            }, { timeout: 2000 }); // Timeout after 2 seconds max
+        } else {
+            // Fallback for browsers without requestIdleCallback
+            setTimeout(() => {
+                if (!this.initialized) {
+                    this.init();
+                }
+            }, 100);
+        }
     }
 
     init() {
+        if (this.initialized) return;
+        this.initialized = true;
+        
         // Style canvas to be a subtle background layer
         this.canvas.style.position = 'fixed';
         this.canvas.style.top = '0';

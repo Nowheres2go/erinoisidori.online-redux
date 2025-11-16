@@ -21,6 +21,13 @@ class CustomCursor {
         // Use cursor.cur as default cursor
         document.body.style.cursor = 'url(/cursor.cur), auto';
         
+        // Try to get initial mouse position if available (from previous interaction)
+        // This prevents cursor from starting at 0,0 on page load
+        this.mouseX = window.innerWidth / 2; // Start at center as fallback
+        this.mouseY = window.innerHeight / 2;
+        this.cursorX = this.mouseX;
+        this.cursorY = this.mouseY;
+        
         // Create donut circle for hover effects (ring with transparent center)
         // Using thick border to create the donut ring (transparent center is automatic)
         this.cursorDonut = document.createElement('div');
@@ -39,6 +46,8 @@ class CustomCursor {
             transition: opacity 0.3s ease-out, width 0.3s ease-out, height 0.3s ease-out, border-width 0.3s ease-out;
             will-change: transform, opacity;
             box-shadow: 0 0 0 3px #104626;
+            left: ${this.mouseX}px;
+            top: ${this.mouseY}px;
         `;
         
         // Create inner green border circle at the circumference of the inner yellow circle
@@ -67,9 +76,56 @@ class CustomCursor {
             this.mouseX = e.clientX;
             this.mouseY = e.clientY;
             
+            // Update cursor position immediately on first move
             if (!this.isActive) {
+                this.cursorX = this.mouseX;
+                this.cursorY = this.mouseY;
+                if (this.cursorDonut) {
+                    this.cursorDonut.style.left = this.cursorX + 'px';
+                    this.cursorDonut.style.top = this.cursorY + 'px';
+                }
                 this.start();
             }
+        });
+        
+        // Capture mouse position immediately on any mouse event
+        // This ensures cursor is positioned correctly when it first appears
+        const updatePositionFromEvent = (e) => {
+            if (e && e.clientX !== undefined && e.clientY !== undefined) {
+                this.mouseX = e.clientX;
+                this.mouseY = e.clientY;
+                this.cursorX = this.mouseX;
+                this.cursorY = this.mouseY;
+                if (this.cursorDonut) {
+                    this.cursorDonut.style.left = this.cursorX + 'px';
+                    this.cursorDonut.style.top = this.cursorY + 'px';
+                }
+            }
+        };
+        
+        // Track position on any mouse event (mousemove already handled above)
+        document.addEventListener('mouseover', updatePositionFromEvent);
+        document.addEventListener('mouseenter', (e) => {
+            // Try to get position from related target or use current position
+            if (e.relatedTarget && e.relatedTarget.getBoundingClientRect) {
+                const rect = e.relatedTarget.getBoundingClientRect();
+                this.mouseX = rect.left + rect.width / 2;
+                this.mouseY = rect.top + rect.height / 2;
+            }
+        });
+        
+        // Track mouse position on click to prevent jumping
+        document.addEventListener('click', (e) => {
+            this.mouseX = e.clientX;
+            this.mouseY = e.clientY;
+            // Update cursor position immediately
+            if (this.cursorDonut) {
+                this.cursorDonut.style.left = this.mouseX + 'px';
+                this.cursorDonut.style.top = this.mouseY + 'px';
+            }
+            // Sync the animation position
+            this.cursorX = this.mouseX;
+            this.cursorY = this.mouseY;
         });
         
         // Handle hover on all links
@@ -78,10 +134,6 @@ class CustomCursor {
         // Hide cursor when mouse leaves window
         document.addEventListener('mouseleave', () => {
             if (this.cursorDonut) this.cursorDonut.style.opacity = '0';
-        });
-        
-        document.addEventListener('mouseenter', () => {
-            // Donut only shows on link hover, not on mouse enter
         });
     }
 
@@ -121,7 +173,7 @@ class CustomCursor {
         
         links.forEach(link => {
             link.addEventListener('mouseenter', (e) => {
-                this.onLinkHover(e.target);
+                this.onLinkHover(e.target, e);
             });
             
             link.addEventListener('mouseleave', (e) => {
@@ -135,13 +187,13 @@ class CustomCursor {
                 mutation.addedNodes.forEach((node) => {
                     if (node.nodeType === 1) { // Element node
                         if (node.tagName === 'A') {
-                            node.addEventListener('mouseenter', (e) => this.onLinkHover(e.target));
+                            node.addEventListener('mouseenter', (e) => this.onLinkHover(e.target, e));
                             node.addEventListener('mouseleave', (e) => this.onLinkLeave(e.target));
                         }
                         // Check for links within the node
                         const childLinks = node.querySelectorAll('a');
                         childLinks.forEach(link => {
-                            link.addEventListener('mouseenter', (e) => this.onLinkHover(e.target));
+                            link.addEventListener('mouseenter', (e) => this.onLinkHover(e.target, e));
                             link.addEventListener('mouseleave', (e) => this.onLinkLeave(e.target));
                         });
                     }
@@ -155,7 +207,7 @@ class CustomCursor {
         });
     }
 
-    onLinkHover(linkElement) {
+    onLinkHover(linkElement, event) {
         // Hide default cursor on both body and the link itself with !important
         document.body.style.setProperty('cursor', 'none', 'important');
         if (linkElement) {
@@ -167,7 +219,19 @@ class CustomCursor {
             link.style.setProperty('cursor', 'none', 'important');
         });
         
+        // Update position if event is provided (prevents jumping)
+        if (event && event.clientX !== undefined && event.clientY !== undefined) {
+            this.mouseX = event.clientX;
+            this.mouseY = event.clientY;
+            this.cursorX = this.mouseX;
+            this.cursorY = this.mouseY;
+        }
+        
         if (this.cursorDonut) {
+            // Ensure cursor is at correct position before showing (prevents 0,0 jump)
+            this.cursorDonut.style.left = this.cursorX + 'px';
+            this.cursorDonut.style.top = this.cursorY + 'px';
+            
             this.cursorDonut.style.opacity = '1';
             this.cursorDonut.style.width = '80px';
             this.cursorDonut.style.height = '80px';
